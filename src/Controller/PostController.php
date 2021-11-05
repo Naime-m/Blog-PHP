@@ -14,14 +14,14 @@ class PostController
         $postManager = new PostRepository();
         $posts = $postManager->getAll();
 
-        require('src/View/post.list.php');
+        require('../src/View/post.list.php');
     }
 
     public function actionModify($postId)
     {
         $postManager = new PostRepository();
         $post = $postManager->get($postId);
-        require('src/View/post.modify.php');
+        require('../src/View/post.modify.php');
     }
 
     public function actionUpdate($postId, $title, $content)
@@ -38,7 +38,7 @@ class PostController
 
         $post = $postManager->get($postId);
         $comments = $commentManager->getAllByPostId($postId);
-        require('src/View/post.show.php');
+        require('../src/View/post.show.php');
     }
 
     public function actionDelete($postId)
@@ -52,7 +52,7 @@ class PostController
     public function actionCreate()
     {
         $postManager = new PostRepository();
-        require('src/View/post.create.php');
+        require('../src/View/post.create.php');
     }
 
     public function actionInsert($title, $content)

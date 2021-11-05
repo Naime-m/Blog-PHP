@@ -7,6 +7,6 @@ class HomeController
     public function actionHome()
 
     {
-        require('src/View/home.show.php');
+        require('../src/View/home.show.php');
     }
 }

@@ -4,7 +4,6 @@ use App\Controller\CommentController;
 use App\Controller\HomeController;
 use App\Controller\PostController;
 
-require('vendor/autoload.php');
 function getPostId()
 {
     if (isset($_GET['id']) && $_GET['id'] > 0) {

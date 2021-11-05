@@ -16,13 +16,13 @@ class PostRepository extends Repository
         return $posts;
     }
 
-    public function insert($title,$content)
+    public function insert($title, $content)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, NOW() )');
-        $query->execute([$title,$content]);
-        $post = $query->fetch(\PDO::FETCH_ASSOC);
-        return $post;
+        $query->execute([$title, $content]);
+        $postId = $db->lastInsertId();
+        return $postId;
     }
 
     public function get($postId)
@@ -31,11 +31,11 @@ class PostRepository extends Repository
         $query = $db->prepare('SELECT id, title, content, creation_date
         FROM posts WHERE id = ?');
         $query->execute(array($postId));
-        $post = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
-        if (!isset($post[0])) {
+        $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
+        if (!isset($posts[0])) {
             throw new \Exception('Le post n\'existe pas');
         }
-        return $post[0];
+        return $posts[0];
     }
 
     public function update($postId, $title, $content)
@@ -57,6 +57,5 @@ class PostRepository extends Repository
         $query->execute([$postId]);
         $post = $query->fetch(\PDO::FETCH_ASSOC);
         return $post;
-
     }
 }

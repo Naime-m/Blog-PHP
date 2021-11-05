@@ -38,7 +38,6 @@ class PostController
 
         $post = $postManager->get($postId);
         $comments = $commentManager->getAllByPostId($postId);
-
         require('src/View/post.show.php');
     }
 
@@ -46,8 +45,8 @@ class PostController
     {
         $postManager = new PostRepository();
         $post = $postManager->delete($postId);
+        header('location: ?action=post.list');
         
-        require('src/View/post.delete.php');
     }
 
     public function actionCreate()
@@ -60,7 +59,7 @@ class PostController
     {
         $postManager = new PostRepository();
 
-        $post = $postManager->insert($title, $content);
-        require('src/View/post.insert.php');
+        $postId = $postManager->insert($title, $content);
+        header('location: ?action=post.show&id=' . $postId);
     }
 }

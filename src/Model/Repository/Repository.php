@@ -6,7 +6,7 @@ class Repository
 {
     protected function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+        $db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASSWORD);
         return $db;
     }
 }

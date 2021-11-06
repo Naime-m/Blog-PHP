@@ -36,6 +36,14 @@ function getCommentAuthor()
         throw new Exception('La saisie de l\'auteur est obligatoire');
     }
 }
+function getCommentId()
+{
+    if (isset($_GET['id']) && $_GET['id'] > 0) {
+        return $_GET['id'];
+    } else {
+        throw new Exception('Aucun identifiant de commentaire envoyé');
+    }
+}
 function getCommentContent()
 {
     if (isset($_POST['comment']) && !empty($_POST['comment'])) {
@@ -43,6 +51,7 @@ function getCommentContent()
     } else {
         throw new Exception('La saisie du commentaire est obligatoire');
     }
+
 }
 $action = $_GET['action'] ?? 'home';
 try {
@@ -73,6 +82,12 @@ try {
     } elseif ($action == 'post.insert') {
         $controller = new PostController();
         $controller->actionInsert(getPostTitle(), getPostContent());
+    } elseif ($action == 'comment.modify') {
+        $controller = new CommentController();
+        $controller->actionModify(getCommentId());
+    } elseif ($action == 'comment.update') {
+        $controller = new CommentController();
+        $controller->actionUpdate(getCommentId(), getCommentAuthor(), getCommentContent());
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }

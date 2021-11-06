@@ -1,8 +1,7 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Modifier un commentaire'; ?>
 
 <?php ob_start(); ?>
-<h1>Le post a bien été crée</h1>
-
+<h1>Le commentaire a bien été modifié</h1>
 
 <?php $content = ob_get_clean(); ?>
 

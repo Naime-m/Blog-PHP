@@ -88,7 +88,11 @@ try {
     } elseif ($action == 'comment.update') {
         $controller = new CommentController();
         $controller->actionUpdate(getCommentId(), getCommentAuthor(), getCommentContent());
-    } else {
+    } elseif ($action =='comment.delete') {
+        $controller = new CommentController();
+        $controller->actionDelete(getCommentId());
+
+    }else {
         throw new Exception('L\'action demandée n\'existe pas');
     }
 } catch (Exception $e) {

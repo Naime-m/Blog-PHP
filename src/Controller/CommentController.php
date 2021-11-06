@@ -34,4 +34,11 @@ class CommentController
         
     }
 
+    public function actionDelete($commentId)
+    {
+        $commentManager = new CommentRepository();
+        $comment = $commentManager->delete($commentId);
+        require('../src/View/comment.delete.php');
+    }
+
 }

@@ -50,4 +50,13 @@ class CommentRepository extends Repository
         $comment = $query->fetch(\PDO::FETCH_ASSOC);
         return $comment;
     }
+
+    public function delete($commentId)
+    {
+        $db = $this->dbConnect();
+        $query = $db->prepare('DELETE FROM comments WHERE id = ?');
+        $query->execute([$commentId]);
+        $comment = $query->fetch(\PDO::FETCH_ASSOC);
+        return $comment;
+    }
 }

@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
-<p><a href="index.php">Retour à la liste des billets</a></p>
+<p><a href="index.php?action=post.list">Retour à la liste des posts</a></p>
 
 <div class="news">
     <h3>

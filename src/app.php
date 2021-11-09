@@ -3,6 +3,7 @@
 use App\Controller\CommentController;
 use App\Controller\HomeController;
 use App\Controller\PostController;
+use App\Controller\ContactController;
 
 function getPostId()
 {
@@ -52,49 +53,52 @@ function getCommentContent()
         throw new Exception('La saisie du commentaire est obligatoire');
     }
 
-}
-$action = $_GET['action'] ?? 'home';
-try {
-    if ($action == 'post.list') {
-        $controller = new PostController();
-        $controller->actionList();
-    } elseif ($action == 'post.show') {
-        $controller = new PostController();
-        $controller->actionShow(getPostId());
-    } elseif ($action == 'post.modify') {
-        $controller = new PostController();
-        $controller->actionModify(getPostId());
-    } elseif ($action == 'post.update') {
-        $controller = new PostController();
-        $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
-    } elseif ($action == 'comment.insert') {
-        $controller = new CommentController();
-        $controller->actionInsert(getPostId(), getCommentAuthor(), getCommentContent());
-    } elseif ($action == 'home') {
-        $controller = new HomeController();
-        $controller->actionHome();
-    } elseif ($action == 'post.delete') {
-        $controller = new PostController();
-        $controller->actionDelete(getPostId());
-    } elseif ($action == 'post.create') {
-        $controller = new PostController();
-        $controller->actionCreate();
-    } elseif ($action == 'post.insert') {
-        $controller = new PostController();
-        $controller->actionInsert(getPostTitle(), getPostContent());
-    } elseif ($action == 'comment.modify') {
-        $controller = new CommentController();
-        $controller->actionModify(getCommentId());
-    } elseif ($action == 'comment.update') {
-        $controller = new CommentController();
-        $controller->actionUpdate(getCommentId(), getCommentAuthor(), getCommentContent());
-    } elseif ($action =='comment.delete') {
-        $controller = new CommentController();
-        $controller->actionDelete(getCommentId());
-
-    }else {
-        throw new Exception('L\'action demandée n\'existe pas');
+}  
+    $action = $_GET['action'] ?? 'home';
+    try {
+        if ($action == 'post.list') {
+            $controller = new PostController();
+            $controller->actionList();
+        } elseif ($action == 'post.show') {
+            $controller = new PostController();
+            $controller->actionShow(getPostId());
+        } elseif ($action == 'post.modify') {
+            $controller = new PostController();
+            $controller->actionModify(getPostId());
+        } elseif ($action == 'post.update') {
+            $controller = new PostController();
+            $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
+        } elseif ($action == 'comment.insert') {
+            $controller = new CommentController();
+            $controller->actionInsert(getPostId(), getCommentAuthor(), getCommentContent());
+        } elseif ($action == 'home') {
+            $controller = new HomeController();
+            $controller->actionHome();
+        } elseif ($action == 'post.delete') {
+            $controller = new PostController();
+            $controller->actionDelete(getPostId());
+        } elseif ($action == 'post.create') {
+            $controller = new PostController();
+            $controller->actionCreate();
+        } elseif ($action == 'post.insert') {
+            $controller = new PostController();
+            $controller->actionInsert(getPostTitle(), getPostContent());
+        } elseif ($action == 'comment.modify') {
+            $controller = new CommentController();
+            $controller->actionModify(getCommentId());
+        } elseif ($action == 'comment.update') {
+            $controller = new CommentController();
+            $controller->actionUpdate(getCommentId(), getCommentAuthor(), getCommentContent());
+        } elseif ($action == 'comment.delete') {
+            $controller = new CommentController();
+            $controller->actionDelete(getCommentId());
+        } elseif ($action == 'contact.submit') {
+            $controller = new ContactController();
+            $controller->actionSubmit();
+        } else {
+            throw new Exception('L\'action demandée n\'existe pas');
+        }
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
     }
-} catch (Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
-}
+

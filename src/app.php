@@ -4,6 +4,8 @@ use App\Controller\CommentController;
 use App\Controller\HomeController;
 use App\Controller\PostController;
 use App\Controller\ContactController;
+use App\Controller\LoginController;
+
 
 function getPostId()
 {
@@ -95,6 +97,9 @@ function getCommentContent()
         } elseif ($action == 'contact.submit') {
             $controller = new ContactController();
             $controller->actionSubmit();
+        } elseif ($action == 'login.form') {
+            $controller = new LoginController();
+            $controller->actionLoginForm();
         } else {
             throw new Exception('L\'action demandée n\'existe pas');
         }

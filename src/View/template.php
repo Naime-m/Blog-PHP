@@ -7,7 +7,7 @@
     </head>
     
     <body>
-    <a href='?' class='accueil'>Accueil</a>
+    <a href='?' class='accueil'>Bienvenue</a>
     <a href='?action=post.list' class='articles'>Les derniers articles !</a>
         <?= $content ?>
     </body>

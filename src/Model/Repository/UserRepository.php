@@ -6,8 +6,6 @@ use App\Model\Entity\User;
 
 class UserRepository extends Repository
 {
-
-
     public function getOneByEmailandPassword($email, $password)
     {
         $db = $this->dbConnect();

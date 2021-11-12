@@ -33,12 +33,11 @@ class CommentRepository extends Repository
         $query = $db->prepare('SELECT id, author, comment, comment_date 
         FROM comments WHERE id = ?');
         $query->execute(array($commentId));
-        $comment=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class); 
+        $comment=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
         if (!isset($comment[0])) {
             throw new \Exception('Le commentaire n\'existe pas');
         }
         return $comment[0];
-        
     }
 
     public function update($commentId, $author, $comment)

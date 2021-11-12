@@ -6,9 +6,7 @@ use App\Model\Repository\UserRepository;
 
 class UserController
 {
-
     public function actionLoginForm()
-
     {
         require('../src/View/login.form.php');
     }
@@ -25,7 +23,6 @@ class UserController
         }
     }
     public function actionLogout()
-
     {
         session_unset();
         session_destroy();

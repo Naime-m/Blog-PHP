@@ -7,9 +7,7 @@ use App\Model\Repository\PostRepository;
 
 class PostController
 {
-
     public function actionList()
-
     {
         $postManager = new PostRepository();
         $posts = $postManager->getAll();
@@ -46,7 +44,6 @@ class PostController
         $postManager = new PostRepository();
         $post = $postManager->delete($postId);
         header('location: ?action=post.list');
-        
     }
 
     public function actionCreate()

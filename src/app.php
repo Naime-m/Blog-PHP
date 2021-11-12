@@ -100,6 +100,9 @@ function getCommentContent()
         } elseif ($action == 'login.form') {
             $controller = new LoginController();
             $controller->actionLoginForm();
+        } elseif ($action == 'login.submit') {
+            $controller = new LoginController();
+            $controller->actionLoginSubmit(); 
         } else {
             throw new Exception('L\'action demandée n\'existe pas');
         }

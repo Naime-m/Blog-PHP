@@ -1,7 +1,6 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
-
 <h1>Bienvenue sur mon blog personnel !</h1>
 <h2>Medjek Naime</h2>
 <img src ="/img/logop5.png" alt ="logo">

@@ -4,7 +4,7 @@ use App\Controller\CommentController;
 use App\Controller\HomeController;
 use App\Controller\PostController;
 use App\Controller\ContactController;
-use App\Controller\LoginController;
+use App\Controller\UserController;
 
 
 function getPostId()
@@ -54,6 +54,23 @@ function getCommentContent()
     } else {
         throw new Exception('La saisie du commentaire est obligatoire');
     }
+    function getUserEmail()
+{
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        return $_POST['email'];
+    } else {
+        throw new Exception('La saisie de l\'email est obligatoire');
+ 
+   }
+   function getUserPassword()
+{
+    if (isset($_POST['password']) && !empty($_POST['password'])) {
+        return $_POST['password'];
+    } else {
+        throw new Exception('La saisie du mot de passe est obligatoire');
+    }
+}
+}
 
 }  
     $action = $_GET['action'] ?? 'home';
@@ -98,11 +115,11 @@ function getCommentContent()
             $controller = new ContactController();
             $controller->actionSubmit();
         } elseif ($action == 'login.form') {
-            $controller = new LoginController();
+            $controller = new UserController();
             $controller->actionLoginForm();
         } elseif ($action == 'login.submit') {
-            $controller = new LoginController();
-            $controller->actionLoginSubmit(); 
+            $controller = new UserController();
+            $controller->actionLoginSubmit(getUserEmail(),getUserPassword()); 
         } else {
             throw new Exception('L\'action demandée n\'existe pas');
         }

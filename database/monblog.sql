@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 06 nov. 2021 à 17:19
+-- Généré le : ven. 12 nov. 2021 à 10:55
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment` text NOT NULL,
   `comment_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `comments`
@@ -55,13 +55,11 @@ INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `comment_date`) VA
 (11, 2, 'Bernard', 'Bonsoir', '2021-10-30 16:01:57'),
 (12, 2, 'Blabla', '123', '2021-10-30 16:05:15'),
 (13, 2, 'Paul', 'Bonjour', '2021-10-30 17:25:19'),
-(14, 24, '123', '456', '2021-10-31 17:30:39'),
+(22, 24, 'Bernard', 'Très bien !', '2021-11-07 07:02:33'),
 (15, 26, 'Bernard', 'Génial !', '2021-10-31 17:32:46'),
 (16, 35, 'Bernard', 'dfgs', '2021-11-04 18:34:13'),
 (17, 35, 'sdfg', 'sdfg', '2021-11-04 18:34:18'),
-(18, 24, 'Bernard', 'génial\r\n\r\n', '2021-11-04 18:43:27'),
-(19, 24, 'BlaBLABLA', 'blablaBLABLAAA', '2021-11-06 18:17:56'),
-(20, 24, 'Blabla', 'abcBAAAAAAAAAAAAAAAA', '2021-11-06 18:18:04'),
+(20, 24, 'Jean', 'Ce commentaire a été modifié.', '2021-11-06 18:23:53'),
 (21, 36, '123', '123', '2021-11-05 18:32:47');
 
 -- --------------------------------------------------------
@@ -86,7 +84,23 @@ CREATE TABLE IF NOT EXISTS `posts` (
 INSERT INTO `posts` (`id`, `title`, `content`, `creation_date`) VALUES
 (5, 'PHP est le meilleur langage de programmation', 'C\'est officiel, l\'éléPHPant a annoncé à la radio hier soir \"J\'ai l\'intention de conquérir le monde !\".\r\nIl a en outre précisé que le monde serait à sa botte en moins de temps qu\'il n\'en fallait pour dire \"éléPHPant\".', '2021-10-30 17:24:03'),
 (8, 'PHP est le meilleur langage de programmation', 'C\'est officiel, l\'éléPHPant a annoncé à la radio hier soir \"J\'ai l\'intention de conquérir le monde !\".\r\nIl a en outre précisé que le monde serait à sa botte en moins de temps qu\'il n\'en fallait pour dire \"éléPHPant\".', '2021-10-30 17:24:03'),
-(24, 'Vive le PHP !', 'Le PHP est le meilleur langage de programmation ! Et de très loin !', '2021-11-06 07:46:02');
+(24, 'Vive le PHP !', 'Le PHP est le meilleur langage de programmation ! Et de très loin ! Et oui !', '2021-11-06 18:43:29');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

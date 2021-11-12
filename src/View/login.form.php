@@ -5,6 +5,9 @@
 
 <form action="index.php?action=login.submit" method="post">
     <div>
+        <?php if (isset($_GET['login']) and $_GET['login'] == 'invalid') : ?>
+            <p>Identifiants erronés</p>
+        <?php endif ?>
         <label for="email">Email</label><br />
         <input type="email" id="email" name="email" />
     </div>

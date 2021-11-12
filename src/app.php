@@ -6,6 +6,7 @@ use App\Controller\PostController;
 use App\Controller\ContactController;
 use App\Controller\UserController;
 
+session_start();
 
 function getPostId()
 {
@@ -119,6 +120,9 @@ try {
     } elseif ($action == 'login.submit') {
         $controller = new UserController();
         $controller->actionLoginSubmit(getUserEmail(), getUserPassword());
+    } elseif ($action == 'logout') {
+        $controller = new UserController();
+        $controller->actionLogout();
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }

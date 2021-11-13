@@ -8,6 +8,7 @@ class Post
     public $title;
     public $content;
     public $creation_date;
+    public $user_id;
 
     public function getPostDateFr()
     {

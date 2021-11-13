@@ -9,7 +9,8 @@ class Comment
     public $author;
     public $comment;
     public $comment_date;
-
+    public $user_id;
+    public $comment_status_id;
     public function getCommentDateFr()
     {
         $date=new \DateTime($this->comment_date);

@@ -33,14 +33,19 @@
 </form>
 <?php endif ?>
 
-    <?php foreach ($comments as $comment) : ?>
-        <p><strong><?= htmlspecialchars($comment->author) ?></strong> le <?= $comment->getCommentDateFr() ?></p>
-        <p><?= nl2br(htmlspecialchars($comment->comment)) ?></p>
-        <a href="index.php?action=comment.modify&amp;id=<?= $comment->id ?>">Modifier</a>
-        <a href="index.php?action=comment.delete&amp;id=<?= $comment->id ?>">Supprimer</a>
-    <?php endforeach ?>
+<?php foreach ($comments as $comment) : ?>
+<p><strong><?= htmlspecialchars($comment->author) ?></strong> le
+    <?= $comment->getCommentDateFr() ?>
+</p>
+<p><?= nl2br(htmlspecialchars($comment->comment)) ?>
+</p>
+<?php if (isset($_SESSION['user']) /* && $_SESSION['user']->id == $comment->user_id */) : ?>
+<a href="index.php?action=comment.modify&id=<?= $comment->id ?>">Modifier</a>
+<a href="index.php?action=comment.delete&id=<?= $comment->id ?>">Supprimer</a>
+<?php endif ?>
+<?php endforeach ?>
 
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('template.php');

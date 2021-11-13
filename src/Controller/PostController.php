@@ -52,11 +52,11 @@ class PostController
         require('../src/View/post.create.php');
     }
 
-    public function actionInsert($title, $content)
+    public function actionInsert($title, $content,$user_id)
     {
         $postManager = new PostRepository();
 
-        $postId = $postManager->insert($title, $content);
+        $postId = $postManager->insert($title, $content,$user_id);
         header('location: ?action=post.show&id=' . $postId);
     }
 }

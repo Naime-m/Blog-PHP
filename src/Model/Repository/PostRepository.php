@@ -9,18 +9,18 @@ class PostRepository extends Repository
     public function getAll()
     {
         $db = $this->dbConnect();
-        $query = $db->query('SELECT id, title, content, creation_date
+        $query = $db->query('SELECT id, title, content, creation_date, user_id
         FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
 
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
         return $posts;
     }
 
-    public function insert($title, $content)
+    public function insert($title, $content,$user_id)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, NOW() )');
-        $query->execute([$title, $content]);
+        $query = $db->prepare('INSERT INTO posts(title, content, creation_date, user_id) VALUES(?, ?, NOW(), ? )');
+        $query->execute([$title, $content,$user_id]);
         $postId = $db->lastInsertId();
         return $postId;
     }

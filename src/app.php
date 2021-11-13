@@ -73,6 +73,15 @@ function getUserPassword()
     }
 }
 
+function getUserId()
+{
+    if (isset($_SESSION['user']->id) && !empty($_SESSION['user']->id)) {
+        return $_SESSION['user']->id;
+    } else {
+        throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
+    } 
+}
+
 $action = $_GET['action'] ?? 'home';
 try {
     if ($action == 'post.list') {
@@ -101,7 +110,7 @@ try {
         $controller->actionCreate();
     } elseif ($action == 'post.insert') {
         $controller = new PostController();
-        $controller->actionInsert(getPostTitle(), getPostContent());
+        $controller->actionInsert(getPostTitle(), getPostContent(),getUserId());
     } elseif ($action == 'comment.modify') {
         $controller = new CommentController();
         $controller->actionModify(getCommentId());

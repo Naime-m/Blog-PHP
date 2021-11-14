@@ -79,7 +79,7 @@ function getUserId()
         return $_SESSION['user']->id;
     } else {
         throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
-    } 
+    }
 }
 
 $action = $_GET['action'] ?? 'home';
@@ -110,7 +110,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionCreate();
     } elseif ($action == 'post.insert') {
         $controller = new PostController();
-        $controller->actionInsert(getPostTitle(), getPostContent(),getUserId());
+        $controller->actionInsert(getPostTitle(), getPostContent(), getUserId());
     } elseif ($action == 'comment.modify') {
         $controller = new CommentController();
         $controller->actionModify(getCommentId());
@@ -136,5 +136,5 @@ $action = $_GET['action'] ?? 'home';
         throw new Exception('L\'action demandée n\'existe pas');
     }
 //} catch (Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+  // echo 'Erreur : ' . $e->getMessage();
 // }

@@ -16,7 +16,7 @@ class PostRepository extends Repository
         return $posts;
     }
 
-    public function insert($title, $content,$user_id)
+    public function insert($title, $content, $user_id)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('INSERT INTO posts(title, content, creation_date, user_id) VALUES(?, ?, NOW(), ? )');
@@ -30,16 +30,15 @@ class PostRepository extends Repository
         $db = $this->dbConnect();
         $query = $db->prepare('SELECT posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
         users.lastname
-        FROM posts
-        JOIN users ON users.lastname = posts.user_id
+        FROM posts JOIN users ON posts.user_id = users.id
         WHERE posts.id = ?');
-        
+
         $query->execute(array($postId));
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
 
-        //if (!isset($posts[0])) {
-     //       throw new \Exception('Le post n\'existe pas');
-      //  }
+        if (!isset($posts[0])) {
+             throw new \Exception('Le post n\'existe pas');
+        }
         return $posts[0];
     }
 

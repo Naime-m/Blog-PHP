@@ -28,13 +28,18 @@ class PostRepository extends Repository
     public function get($postId)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('SELECT id, title, content, creation_date
-        FROM posts WHERE id = ?');
+        $query = $db->prepare('SELECT posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
+        users.lastname
+        FROM posts
+        JOIN users ON users.lastname = posts.user_id
+        WHERE posts.id = ?');
+        
         $query->execute(array($postId));
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
-        if (!isset($posts[0])) {
-            throw new \Exception('Le post n\'existe pas');
-        }
+
+        //if (!isset($posts[0])) {
+     //       throw new \Exception('Le post n\'existe pas');
+      //  }
         return $posts[0];
     }
 

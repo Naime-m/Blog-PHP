@@ -8,6 +8,7 @@
     <h3>
         <?= $title ?>
         <em>le <?= $post->getPostDateFr() ?></em>
+        rédigé par <?= $_SESSION['user']->id ?>
     </h3>
 
     <p>

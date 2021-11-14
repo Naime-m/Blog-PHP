@@ -83,7 +83,7 @@ function getUserId()
 }
 
 $action = $_GET['action'] ?? 'home';
-try {
+//try {
     if ($action == 'post.list') {
         $controller = new PostController();
         $controller->actionList();
@@ -135,6 +135,6 @@ try {
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }
-} catch (Exception $e) {
+//} catch (Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
-}
+// }

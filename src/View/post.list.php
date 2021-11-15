@@ -9,7 +9,7 @@
         <h3>
             <?= htmlspecialchars($post->title) ?>
             <em>le <?= $post->getPostDateFr() ?></em>
-            rédigé par <?= $post->user_id ?>
+            rédigé par <?= $post->lastname?> <?= $post->firstname?>
         </h3>
         
         <p>

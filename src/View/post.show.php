@@ -8,7 +8,7 @@
     <h3>
         <?= $title ?>
         <em>le <?= $post->getPostDateFr() ?></em>
-        rédigé par <?= $_SESSION['user']->id ?>
+        rédigé par <?= $post->lastname?> <?= $post->firstname ?>
     </h3>
 
     <p>
@@ -40,7 +40,7 @@
 </p>
 <p><?= nl2br(htmlspecialchars($comment->comment)) ?>
 </p>
-<?php if (isset($_SESSION['user']) /* && $_SESSION['user']->id == $comment->user_id */) : ?>
+<?php if (isset($_SESSION['user']) /*&& $_SESSION['user']->id == $comment->user_id*/ ) : ?>
 <a href="index.php?action=comment.modify&id=<?= $comment->id ?>">Modifier</a>
 <a href="index.php?action=comment.delete&id=<?= $comment->id ?>">Supprimer</a>
 <?php endif ?>

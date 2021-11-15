@@ -9,8 +9,10 @@ class PostRepository extends Repository
     public function getAll()
     {
         $db = $this->dbConnect();
-        $query = $db->query('SELECT id, title, content, creation_date, user_id
-        FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+        $query = $db->query('SELECT posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
+        users.lastname, users.firstname
+        FROM posts JOIN users ON posts.user_id = users.id
+        ORDER BY creation_date DESC LIMIT 0, 5');
 
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
         return $posts;
@@ -29,7 +31,7 @@ class PostRepository extends Repository
     {
         $db = $this->dbConnect();
         $query = $db->prepare('SELECT posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
-        users.lastname
+        users.lastname, users.firstname
         FROM posts JOIN users ON posts.user_id = users.id
         WHERE posts.id = ?');
 

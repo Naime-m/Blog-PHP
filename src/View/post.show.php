@@ -21,10 +21,6 @@
 <?php if (isset($_SESSION['user'])) : ?>
 <form action="index.php?action=comment.insert&amp;id=<?= $post->id ?>" method="post">
     <div>
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
-    </div>
-    <div>
         <label for="comment">Commentaire</label><br />
         <textarea id="comment" name="comment"></textarea>
     </div>
@@ -33,10 +29,11 @@
     </div>
 </form>
 <?php endif ?>
-
 <?php foreach ($comments as $comment) : ?>
-<p><strong><?= htmlspecialchars($comment->author) ?></strong> le
-    <?= $comment->getCommentDateFr() ?>
+<p><strong><?= htmlspecialchars($comment->lastname)?></strong>
+<strong><?= htmlspecialchars($comment->firstname)?></strong> le
+    <?= $comment->getCommentDateFr() ?> statut :
+    <?= $comment->comment_status_id ?>
 </p>
 <p><?= nl2br(htmlspecialchars($comment->comment)) ?>
 </p>

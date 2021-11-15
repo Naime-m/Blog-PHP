@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 14 nov. 2021 à 19:53
+-- Généré le : lun. 15 nov. 2021 à 17:11
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -31,13 +31,25 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_id` int(11) NOT NULL,
-  `author` varchar(255) NOT NULL,
   `comment` text NOT NULL,
   `comment_date` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   `comment_status_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `comments`
+--
+
+INSERT INTO `comments` (`id`, `post_id`, `comment`, `comment_date`, `user_id`, `comment_status_id`) VALUES
+(29, 43, 'blabla', '2021-11-15 16:52:33', 4, 1),
+(30, 43, 'blabla', '2021-11-15 16:52:47', 4, 1),
+(31, 43, 'Bonjour !', '2021-11-15 16:55:54', 4, 1),
+(32, 43, 'blabla', '2021-11-15 16:56:33', 4, 1),
+(33, 43, 'Génial !', '2021-11-15 16:59:43', 4, 1),
+(34, 45, 'Bonjour !', '2021-11-15 17:11:58', 4, 1),
+(35, 45, 'blabla', '2021-11-15 17:16:23', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -74,16 +86,16 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `creation_date` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `posts`
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `creation_date`, `user_id`) VALUES
-(41, 'Test', 'Test', '2021-11-13 13:51:50', 3),
-(37, 'Vive le PHP !', 'Le PHP c\'est génial', '2021-11-13 07:57:26', 3),
-(38, 'Le PHP c\'est extraordinaire !', 'Oui !', '2021-11-13 08:02:39', 3);
+(43, 'Bonjour', 'Bienvenue !', '2021-11-14 21:44:38', 3),
+(45, 'Les Misérables', 'PHP !', '2021-11-15 17:16:36', 4),
+(38, 'Le PHP c\'est extraordinaire !', 'Oui !!!', '2021-11-15 17:16:44', 3);
 
 -- --------------------------------------------------------
 
@@ -100,13 +112,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(255) NOT NULL,
   `userType_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `lastname`, `firstname`, `userType_id`) VALUES
+(4, 'testt@test.com', 'test', 'Valjean', 'Jean', 2),
 (3, 'test@test.com', 'test', 'Martin', 'Arthur', 2);
 
 -- --------------------------------------------------------

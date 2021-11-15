@@ -5,6 +5,8 @@ use App\Controller\HomeController;
 use App\Controller\PostController;
 use App\Controller\ContactController;
 use App\Controller\UserController;
+use App\Model\Entity\Comment;
+use App\Model\Repository\CommentRepository;
 
 session_start();
 
@@ -32,14 +34,7 @@ function getPostContent()
         throw new Exception('La saisie du contenu est obligatoire');
     }
 }
-function getCommentAuthor()
-{
-    if (isset($_POST['author']) && !empty($_POST['author'])) {
-        return $_POST['author'];
-    } else {
-        throw new Exception('La saisie de l\'auteur est obligatoire');
-    }
-}
+
 function getCommentId()
 {
     if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -63,6 +58,12 @@ function getUserEmail()
     } else {
         throw new Exception('La saisie de l\'email est obligatoire');
     }
+}
+function getCommentStatusId() 
+{
+    if (isset($_POST['comment_status_id']) && !empty($_POST['comment_status_id'])) {
+        return $_POST['comment_status_id'];
+}
 }
 function getUserPassword()
 {
@@ -98,7 +99,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
     } elseif ($action == 'comment.insert') {
         $controller = new CommentController();
-        $controller->actionInsert(getPostId(), getCommentAuthor(), getCommentContent());
+        $controller->actionInsert(getPostId(), getCommentContent(), getUserId(), getCommentStatusId());
     } elseif ($action == 'home') {
         $controller = new HomeController();
         $controller->actionHome();
@@ -116,7 +117,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionModify(getCommentId());
     } elseif ($action == 'comment.update') {
         $controller = new CommentController();
-        $controller->actionUpdate(getCommentId(), getCommentAuthor(), getCommentContent());
+        $controller->actionUpdate(getCommentId(), getCommentContent(), getUserId());
     } elseif ($action == 'comment.delete') {
         $controller = new CommentController();
         $controller->actionDelete(getCommentId());

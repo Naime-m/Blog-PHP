@@ -9,21 +9,23 @@ class CommentRepository extends Repository
     public function getAllByPostId($postId)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('SELECT id, post_id, author, comment, comment_date 
-        /* DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr */
-        FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+        $query = $db->prepare('SELECT comments.id, comments.post_id, comments.comment,
+        comments.comment_date, comments.user_id, users.id, users.lastname, users.firstname
+        FROM comments JOIN users
+        ON comments.user_id = users.id
+         WHERE post_id = ? ORDER BY comment_date DESC');
         $query->execute(array($postId));
         $comments=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
 
         return $comments;
     }
 
-    public function insert($postId, $author, $comment)
+    public function insert($postId, $comment,$user_id)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-        $affectedLines = $comments->execute(array($postId, $author, $comment));
-        return $affectedLines;
+        $query = $db->prepare('INSERT INTO comments(post_id, comment, user_id, comment_status_id, comment_date) VALUES(?, ?, ?, 1, NOW())');
+        $comments = $query->execute(array($postId, $comment,$user_id));
+        return $comments;
     }
 
 

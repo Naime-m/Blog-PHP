@@ -6,7 +6,6 @@ class Comment
 {
     public $id;
     public $post_id;
-    public $author;
     public $comment;
     public $comment_date;
     public $user_id;

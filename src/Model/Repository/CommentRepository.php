@@ -20,11 +20,11 @@ class CommentRepository extends Repository
         return $comments;
     }
 
-    public function insert($postId, $comment,$user_id)
+    public function insert($postId, $comment, $user_id, $comment_status_id)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('INSERT INTO comments(post_id, comment, user_id, comment_status_id, comment_date) VALUES(?, ?, ?, 1, NOW())');
-        $comments = $query->execute(array($postId, $comment,$user_id));
+        $comments = $query->execute(array($postId, $comment, $user_id, $comment_status_id));
         return $comments;
     }
 

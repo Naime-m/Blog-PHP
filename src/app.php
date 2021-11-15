@@ -59,11 +59,11 @@ function getUserEmail()
         throw new Exception('La saisie de l\'email est obligatoire');
     }
 }
-function getCommentStatusId() 
+function getCommentStatusId()
 {
     if (isset($_POST['comment_status_id']) && !empty($_POST['comment_status_id'])) {
         return $_POST['comment_status_id'];
-}
+    }
 }
 function getUserPassword()
 {

@@ -1,4 +1,4 @@
-<?php $title = 'Créer un post'; ?>
+<?php $title = 'Se connecter'; ?>
 
 <?php ob_start(); ?>
 <h1>Se connecter</h1>

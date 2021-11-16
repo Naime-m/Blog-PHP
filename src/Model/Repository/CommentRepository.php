@@ -10,7 +10,7 @@ class CommentRepository extends Repository
     {
         $db = $this->dbConnect();
         $query = $db->prepare('SELECT comments.id, comments.post_id, comments.comment,
-        comments.comment_date, comments.user_id, users.id, users.lastname, users.firstname
+        comments.comment_date, comments.user_id, comments.comment_status_id, users.id, users.lastname, users.firstname
         FROM comments JOIN users
         ON comments.user_id = users.id
          WHERE post_id = ? ORDER BY comment_date DESC');
@@ -23,7 +23,8 @@ class CommentRepository extends Repository
     public function insert($postId, $comment, $user_id, $comment_status_id)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('INSERT INTO comments(post_id, comment, user_id, comment_status_id, comment_date) VALUES(?, ?, ?, 1, NOW())');
+        $query = $db->prepare('INSERT INTO comments(post_id, comment, user_id, comment_status_id, comment_date)
+        VALUES(?, ?, ?, 1, NOW())');
         $comments = $query->execute(array($postId, $comment, $user_id, $comment_status_id));
         return $comments;
     }

@@ -5,8 +5,6 @@ use App\Controller\HomeController;
 use App\Controller\PostController;
 use App\Controller\ContactController;
 use App\Controller\UserController;
-use App\Model\Entity\Comment;
-use App\Model\Repository\CommentRepository;
 
 session_start();
 
@@ -24,6 +22,14 @@ function getPostTitle()
         return $_POST['title'];
     } else {
         throw new Exception('La saisie du titre est obligatoire');
+    }
+}
+function getCommentStatusId()
+{
+    if (isset($_SESSION['comment_status_id']) && !empty($_SESSION['comment_status_id'])) {
+        return $_SESSION['comment_status_id'];
+    } else {
+        throw new Exception('Le commentaire n\'a pas de statut');
     }
 }
 function getPostContent()
@@ -59,12 +65,7 @@ function getUserEmail()
         throw new Exception('La saisie de l\'email est obligatoire');
     }
 }
-function getCommentStatusId()
-{
-    if (isset($_POST['comment_status_id']) && !empty($_POST['comment_status_id'])) {
-        return $_POST['comment_status_id'];
-    }
-}
+
 function getUserPassword()
 {
     if (isset($_POST['password']) && !empty($_POST['password'])) {

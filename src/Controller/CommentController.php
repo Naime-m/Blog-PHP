@@ -6,11 +6,11 @@ use App\Model\Repository\CommentRepository;
 
 class CommentController
 {
-    public function actionInsert($postId, $comment, $user_id, $comment_status_id)
+    public function actionInsert($postId, $comment, $user_id)
     {
         $commentManager = new CommentRepository();
 
-        $comments = $commentManager->insert($postId, $comment, $user_id, $comment_status_id);
+        $comments = $commentManager->insert($postId, $comment, $user_id);
 
         if ($comments === false) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');

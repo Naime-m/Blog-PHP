@@ -24,14 +24,6 @@ function getPostTitle()
         throw new Exception('La saisie du titre est obligatoire');
     }
 }
-function getCommentStatusId()
-{
-    if (isset($_SESSION['comment_status_id']) && !empty($_SESSION['comment_status_id'])) {
-        return $_SESSION['comment_status_id'];
-    } else {
-        throw new Exception('Le commentaire n\'a pas de statut');
-    }
-}
 function getPostContent()
 {
     if (isset($_POST['content']) && !empty($_POST['content'])) {
@@ -100,7 +92,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
     } elseif ($action == 'comment.insert') {
         $controller = new CommentController();
-        $controller->actionInsert(getPostId(), getCommentContent(), getUserId(), getCommentStatusId());
+        $controller->actionInsert(getPostId(), getCommentContent(), getUserId());
     } elseif ($action == 'home') {
         $controller = new HomeController();
         $controller->actionHome();

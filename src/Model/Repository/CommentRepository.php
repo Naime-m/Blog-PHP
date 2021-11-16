@@ -13,19 +13,19 @@ class CommentRepository extends Repository
         comments.comment_date, comments.user_id, comments.comment_status_id, users.id, users.lastname, users.firstname
         FROM comments JOIN users
         ON comments.user_id = users.id
-         WHERE post_id = ? ORDER BY comment_date DESC');
+        WHERE post_id = ? ORDER BY comment_date DESC');
         $query->execute(array($postId));
         $comments=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
 
         return $comments;
     }
 
-    public function insert($postId, $comment, $user_id, $comment_status_id)
+    public function insert($postId, $comment, $user_id)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('INSERT INTO comments(post_id, comment, user_id, comment_status_id, comment_date)
         VALUES(?, ?, ?, 1, NOW())');
-        $comments = $query->execute(array($postId, $comment, $user_id, $comment_status_id));
+        $comments = $query->execute(array($postId, $comment, $user_id));
         return $comments;
     }
 

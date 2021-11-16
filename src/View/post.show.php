@@ -37,7 +37,6 @@
 </p>
 
 <?php if (isset($_SESSION['user'])) /*&& $_SESSION['user']->id == $comment->user_id*/ : ?>
-<?=var_dump($comment)?>
 <a href="index.php?action=comment.modify&id=<?= $comment->id ?>">Modifier</a>
 <a href="index.php?action=comment.delete&id=<?= $comment->id ?>">Supprimer</a>
 <?php endif ?>

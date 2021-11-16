@@ -33,7 +33,7 @@ class CommentRepository extends Repository
     public function get($commentId)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('SELECT id, author, comment, comment_date 
+        $query = $db->prepare('SELECT id, comment, comment_date 
         FROM comments WHERE id = ?');
         $query->execute(array($commentId));
         $comment=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
@@ -58,7 +58,5 @@ class CommentRepository extends Repository
         $db = $this->dbConnect();
         $query = $db->prepare('DELETE FROM comments WHERE id = ?');
         $query->execute([$commentId]);
-        $comment = $query->fetch(\PDO::FETCH_ASSOC);
-        return $comment;
     }
 }

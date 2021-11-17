@@ -19,7 +19,7 @@
         <br />
 
         <em><a href="index.php?action=post.show&id=<?= $post->id ?>">Commentaires</a></em>
-        <?php if (isset($_SESSION['user'])) : ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $post->user_id) : ?>
         <em><a href="index.php?action=post.modify&id=<?= $post->id ?>">Modifier</a></em>
         <em><a href="index.php?action=post.delete&id=<?= $post->id ?>">Supprimer</a></em>
         <?php endif ?>

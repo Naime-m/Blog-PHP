@@ -14,7 +14,6 @@
         <?= nl2br(htmlspecialchars($post->content)) ?>
     </p>
 </div>
-
 <h2>Commentaires</h2>
 <?php if (isset($_SESSION['user'])) : ?>
 <form action="index.php?action=comment.insert&id=<?= $post->id ?>" method="post">
@@ -31,14 +30,14 @@
 <p><strong><?= htmlspecialchars($comment->lastname)?></strong>
     <strong><?= htmlspecialchars($comment->firstname)?></strong> le
     <?= $comment->getCommentDateFr() ?> statut :
-    <?= $comment->comment_status_id ?>
+    <?= $comment->label ?>
 </p>
 <p><?= nl2br(htmlspecialchars($comment->comment)) ?>
 </p>
 
-<?php if (isset($_SESSION['user'])) /*&& $_SESSION['user']->id == $comment->user_id*/ : ?>
-<a href="index.php?action=comment.modify&id=<?= $comment->id ?>">Modifier</a>
-<a href="index.php?action=comment.delete&id=<?= $comment->id ?>">Supprimer</a>
+<?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $comment->user_id) : ?>
+<a href="index.php?action=comment.modify&id=<?= $comment->comment_id ?>">Modifier</a>
+<a href="index.php?action=comment.delete&id=<?= $comment->comment_id ?>">Supprimer</a>
 <?php endif ?>
 <?php endforeach ?>
 

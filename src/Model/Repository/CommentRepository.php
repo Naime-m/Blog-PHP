@@ -9,10 +9,12 @@ class CommentRepository extends Repository
     public function getAllByPostId($postId)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('SELECT comments.id, comments.post_id, comments.comment,
-        comments.comment_date, comments.user_id, comments.comment_status_id, users.id, users.lastname, users.firstname
-        FROM comments JOIN users
-        ON comments.user_id = users.id
+        $query = $db->prepare('SELECT comments.id AS comment_id, comments.post_id, comments.comment,
+        comments.comment_date, comments.user_id, comments.comment_status_id, users.id AS users_id, 
+        users.lastname, users.firstname, comment_status.id AS tcomment_status_id, comment_status.label
+        FROM comments 
+        JOIN users ON comments.user_id = users.id
+        JOIN comment_status ON comments.comment_status_id = comment_status.id
         WHERE post_id = ? ORDER BY comment_date DESC');
         $query->execute(array($postId));
         $comments=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
@@ -43,14 +45,12 @@ class CommentRepository extends Repository
         return $comment[0];
     }
 
-    public function update($commentId, $author, $comment)
+    public function update($commentId, $comment)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('UPDATE comments SET author=?, comment=?, comment_date = NOW()
+        $query = $db->prepare('UPDATE comments SET comment=?, comment_date = NOW()
         WHERE id = ?');
-        $query->execute([$author, $comment, $commentId]);
-        $comment = $query->fetch(\PDO::FETCH_ASSOC);
-        return $comment;
+        $query->execute([$comment, $commentId]);
     }
 
     public function delete($commentId)

@@ -20,7 +20,7 @@ class UserRepository extends Repository
         $db = $this->dbConnect();
         // Vérifier pourquoi le mail était entré à la place du password ici
         // $query = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
-        $query = $db->prepare('INSERT INTO users(firstname, lastname, password, email userType_id)
+        $query = $db->prepare('INSERT INTO users(firstname, lastname, password, email, userType_id)
         VALUES (?, ?, ?, ?, 2)');
         $user =  $query->execute(array($firstname, $lastname, $email, $password));
         return $user;

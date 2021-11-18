@@ -28,4 +28,23 @@ class UserController
         session_destroy();
         header('location: ?action=home');
     }
+
+    public function actionCreate()
+    {
+        $userManager = new UserRepository();
+        require('../src/View/user.form.php');
+    }
+
+    public function actionInsert($firstname, $lastname, $email, $password)
+    {
+        $userManager = new UserRepository();
+
+        $user = $userManager->insert($firstname, $lastname, $email, $password);
+
+        if ($user === false) {
+            throw new \Exception('Impossible de s\'inscrire ! Réessayez !');
+        } else {
+            require('../src/View/user.insert.php');
+        }
+    }
 }

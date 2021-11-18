@@ -16,6 +16,7 @@
             <a href='?action=logout'>Se déconnecter</a>
         <?php else : ?>
             <a href='?action=login.form'>Se connecter</a>
+            <a href='?action=user.form'>S'inscrire</a>
         <?php endif ?>
 
 

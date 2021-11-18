@@ -49,6 +49,22 @@ function getCommentContent()
         throw new Exception('La saisie du commentaire est obligatoire');
     }
 }
+function getUserFirstName()
+{
+    if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
+        return $_POST['firstname'];
+    } else {
+        throw new Exception('La saisie du prénom est obligatoire');
+    }
+}
+function getUserLastName()
+{
+    if (isset($_POST['lastname']) && !empty($_POST['lastname'])) {
+        return $_POST['lastname'];
+    } else {
+        throw new Exception('La saisie du nom est obligatoire');
+    }
+}
 function getUserEmail()
 {
     if (isset($_POST['email']) && !empty($_POST['email'])) {
@@ -126,6 +142,12 @@ $action = $_GET['action'] ?? 'home';
     } elseif ($action == 'logout') {
         $controller = new UserController();
         $controller->actionLogout();
+    } elseif ($action == 'user.form') {
+        $controller = new UserController();
+        $controller->actionCreate();
+    } elseif ($action == 'user.insert') {
+        $controller = new UserController();
+        $controller->actionInsert(getUserFirstName(),getUserLastName(), getUserPassword(), getUserEmail());
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }

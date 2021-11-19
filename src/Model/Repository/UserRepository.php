@@ -26,8 +26,6 @@ class UserRepository extends Repository
         $query->execute();
         $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
         $user = $query->fetch();
-        var_dump($user);
-
         return $user;
     }
 

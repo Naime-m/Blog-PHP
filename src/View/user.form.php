@@ -11,10 +11,12 @@
     <div>
         <label for="lastname">Nom</label><br />
         <input type="text" id="lastname" name="lastname" />
-    </div> <div>
+    </div>
+    <div>
         <label for="email">Email</label><br />
         <input type="email" id="email" name="email" />
-        </div> <div>
+    </div>
+    <div>
         <label for="password">Mot de passe</label><br />
         <input type="password" id="password" name="password" />
     </div>
@@ -26,4 +28,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('template.php');

@@ -1,9 +1,9 @@
 <?php
 
 use App\Controller\CommentController;
+use App\Controller\ContactController;
 use App\Controller\HomeController;
 use App\Controller\PostController;
-use App\Controller\ContactController;
 use App\Controller\UserController;
 
 session_start();
@@ -94,60 +94,60 @@ function getUserId()
 
 $action = $_GET['action'] ?? 'home';
 //try {
-    if ($action == 'post.list') {
+    if ('post.list' == $action) {
         $controller = new PostController();
         $controller->actionList();
-    } elseif ($action == 'post.show') {
+    } elseif ('post.show' == $action) {
         $controller = new PostController();
         $controller->actionShow(getPostId());
-    } elseif ($action == 'post.modify') {
+    } elseif ('post.modify' == $action) {
         $controller = new PostController();
         $controller->actionModify(getPostId());
-    } elseif ($action == 'post.update') {
+    } elseif ('post.update' == $action) {
         $controller = new PostController();
         $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
-    } elseif ($action == 'comment.insert') {
+    } elseif ('comment.insert' == $action) {
         $controller = new CommentController();
         $controller->actionInsert(getPostId(), getCommentContent(), getUserId());
-    } elseif ($action == 'home') {
+    } elseif ('home' == $action) {
         $controller = new HomeController();
         $controller->actionHome();
-    } elseif ($action == 'post.delete') {
+    } elseif ('post.delete' == $action) {
         $controller = new PostController();
         $controller->actionDelete(getPostId());
-    } elseif ($action == 'post.create') {
+    } elseif ('post.create' == $action) {
         $controller = new PostController();
         $controller->actionCreate();
-    } elseif ($action == 'post.insert') {
+    } elseif ('post.insert' == $action) {
         $controller = new PostController();
         $controller->actionInsert(getPostTitle(), getPostContent(), getUserId());
-    } elseif ($action == 'comment.modify') {
+    } elseif ('comment.modify' == $action) {
         $controller = new CommentController();
         $controller->actionModify(getCommentId());
-    } elseif ($action == 'comment.update') {
+    } elseif ('comment.update' == $action) {
         $controller = new CommentController();
         $controller->actionUpdate(getCommentId(), getCommentContent(), getUserId());
-    } elseif ($action == 'comment.delete') {
+    } elseif ('comment.delete' == $action) {
         $controller = new CommentController();
         $controller->actionDelete(getCommentId());
-    } elseif ($action == 'contact.submit') {
+    } elseif ('contact.submit' == $action) {
         $controller = new ContactController();
         $controller->actionSubmit();
-    } elseif ($action == 'login.form') {
+    } elseif ('login.form' == $action) {
         $controller = new UserController();
         $controller->actionLoginForm();
-    } elseif ($action == 'login.submit') {
+    } elseif ('login.submit' == $action) {
         $controller = new UserController();
         $controller->actionLoginSubmit(getUserEmail(), getUserPassword());
-    } elseif ($action == 'logout') {
+    } elseif ('logout' == $action) {
         $controller = new UserController();
         $controller->actionLogout();
-    } elseif ($action == 'user.form') {
+    } elseif ('user.form' == $action) {
         $controller = new UserController();
         $controller->actionCreate();
-    } elseif ($action == 'user.insert') {
+    } elseif ('user.insert' == $action) {
         $controller = new UserController();
-        $controller->actionInsert(getUserFirstName(),getUserLastName(), getUserPassword(), getUserEmail());
+        $controller->actionInsert(getUserFirstName(), getUserLastName(), getUserEmail(), getUserPassword());
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }

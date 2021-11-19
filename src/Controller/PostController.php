@@ -12,21 +12,21 @@ class PostController
         $postManager = new PostRepository();
         $posts = $postManager->getAll();
 
-        require('../src/View/post.list.php');
+        require '../src/View/post.list.php';
     }
 
     public function actionModify($postId)
     {
         $postManager = new PostRepository();
         $post = $postManager->get($postId);
-        require('../src/View/post.modify.php');
+        require '../src/View/post.modify.php';
     }
 
     public function actionUpdate($postId, $title, $content)
     {
         $postManager = new PostRepository();
         $post = $postManager->update($postId, $title, $content);
-        header('location: ?action=post.show&id=' . $postId);
+        header('location: ?action=post.show&id='.$postId);
     }
 
     public function actionShow($postId)
@@ -36,7 +36,7 @@ class PostController
 
         $post = $postManager->get($postId);
         $comments = $commentManager->getAllByPostId($postId);
-        require('../src/View/post.show.php');
+        require '../src/View/post.show.php';
     }
 
     public function actionDelete($postId)
@@ -49,7 +49,7 @@ class PostController
     public function actionCreate()
     {
         $postManager = new PostRepository();
-        require('../src/View/post.create.php');
+        require '../src/View/post.create.php';
     }
 
     public function actionInsert($title, $content, $user_id)
@@ -57,6 +57,6 @@ class PostController
         $postManager = new PostRepository();
 
         $postId = $postManager->insert($title, $content, $user_id);
-        header('location: ?action=post.show&id=' . $postId);
+        header('location: ?action=post.show&id='.$postId);
     }
 }

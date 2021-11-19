@@ -8,7 +8,7 @@ class UserController
 {
     public function actionLoginForm()
     {
-        require('../src/View/login.form.php');
+        require '../src/View/login.form.php';
     }
 
     public function actionLoginSubmit($email, $password)
@@ -19,9 +19,10 @@ class UserController
             header('Location: index.php?action=login.form&login=invalid');
         } else {
             $_SESSION['user'] = $user;
-            require('../src/View/login.submit.connected.php');
+            require '../src/View/login.submit.connected.php';
         }
     }
+
     public function actionLogout()
     {
         session_unset();
@@ -32,7 +33,7 @@ class UserController
     public function actionCreate()
     {
         $userManager = new UserRepository();
-        require('../src/View/user.form.php');
+        require '../src/View/user.form.php';
     }
 
     public function actionInsert($firstname, $lastname, $email, $password)
@@ -41,10 +42,10 @@ class UserController
 
         $user = $userManager->insert($firstname, $lastname, $email, $password);
 
-        if ($user === false) {
+        if (false === $user) {
             throw new \Exception('Impossible de s\'inscrire ! Réessayez !');
         } else {
-            require('../src/View/user.insert.php');
+            require '../src/View/user.insert.php';
         }
     }
 }

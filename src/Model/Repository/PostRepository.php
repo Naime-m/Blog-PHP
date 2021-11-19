@@ -15,6 +15,7 @@ class PostRepository extends Repository
         ORDER BY creation_date DESC LIMIT 0, 5');
 
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
+
         return $posts;
     }
 
@@ -22,8 +23,9 @@ class PostRepository extends Repository
     {
         $db = $this->dbConnect();
         $query = $db->prepare('INSERT INTO posts(title, content, creation_date, user_id) VALUES(?, ?, NOW(), ? )');
-        $query->execute([$title, $content,$user_id]);
+        $query->execute([$title, $content, $user_id]);
         $postId = $db->lastInsertId();
+
         return $postId;
     }
 
@@ -35,12 +37,13 @@ class PostRepository extends Repository
         FROM posts JOIN users ON posts.user_id = users.id
         WHERE posts.id = ?');
 
-        $query->execute(array($postId));
+        $query->execute([$postId]);
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
 
         if (!isset($posts[0])) {
-             throw new \Exception('Le post n\'existe pas');
+            throw new \Exception('Le post n\'existe pas');
         }
+
         return $posts[0];
     }
 

@@ -12,7 +12,8 @@ class Post
 
     public function getPostDateFr()
     {
-        $date=new \DateTime($this->creation_date);
+        $date = new \DateTime($this->creation_date);
+
         return $date->format('d/m/Y à H:i');
     }
 }

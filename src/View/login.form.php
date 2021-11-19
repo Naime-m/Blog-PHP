@@ -5,9 +5,9 @@
 
 <form action="index.php?action=login.submit" method="post">
     <div>
-        <?php if (isset($_GET['login']) and $_GET['login'] == 'invalid') : ?>
+        <?php if (isset($_GET['login']) and 'invalid' == $_GET['login']) { ?>
             <p>Identifiants erronés</p>
-        <?php endif ?>
+        <?php } ?>
         <label for="email">Email</label><br />
         <input type="email" id="email" name="email" />
     </div>
@@ -22,4 +22,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require 'template.php'; ?>

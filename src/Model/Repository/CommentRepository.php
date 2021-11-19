@@ -16,8 +16,8 @@ class CommentRepository extends Repository
         JOIN users ON comments.user_id = users.id
         JOIN comment_status ON comments.comment_status_id = comment_status.id
         WHERE post_id = ? ORDER BY comment_date DESC');
-        $query->execute(array($postId));
-        $comments=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
+        $query->execute([$postId]);
+        $comments = $query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
 
         return $comments;
     }
@@ -27,21 +27,22 @@ class CommentRepository extends Repository
         $db = $this->dbConnect();
         $query = $db->prepare('INSERT INTO comments(post_id, comment, user_id, comment_status_id, comment_date)
         VALUES(?, ?, ?, 1, NOW())');
-        $comments = $query->execute(array($postId, $comment, $user_id));
+        $comments = $query->execute([$postId, $comment, $user_id]);
+
         return $comments;
     }
-
 
     public function get($commentId)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('SELECT id, comment, comment_date 
         FROM comments WHERE id = ?');
-        $query->execute(array($commentId));
-        $comment=$query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
+        $query->execute([$commentId]);
+        $comment = $query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
         if (!isset($comment[0])) {
             throw new \Exception('Le commentaire n\'existe pas');
         }
+
         return $comment[0];
     }
 

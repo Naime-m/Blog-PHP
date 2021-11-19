@@ -5,18 +5,18 @@
 
 <div class="news">
     <h3>
-        <?= $title ?>
-        <em>le <?= $post->getPostDateFr() ?></em>
-        rédigé par <?= $post->lastname?> <?= $post->firstname ?>
+        <?php echo $title; ?>
+        <em>le <?php echo $post->getPostDateFr(); ?></em>
+        rédigé par <?php echo $post->lastname; ?> <?php echo $post->firstname; ?>
     </h3>
 
     <p>
-        <?= nl2br(htmlspecialchars($post->content)) ?>
+        <?php echo nl2br(htmlspecialchars($post->content)); ?>
     </p>
 </div>
 <h2>Commentaires</h2>
-<?php if (isset($_SESSION['user'])) : ?>
-<form action="index.php?action=comment.insert&id=<?= $post->id ?>" method="post">
+<?php if (isset($_SESSION['user'])) { ?>
+<form action="index.php?action=comment.insert&id=<?php echo $post->id; ?>" method="post">
     <div>
         <label for="comment">Commentaire</label><br />
         <textarea id="comment" name="comment"></textarea>
@@ -25,23 +25,23 @@
         <input type="submit" />
     </div>
 </form>
-<?php endif ?>
-<?php foreach ($comments as $comment) : ?>
-<p><strong><?= htmlspecialchars($comment->lastname)?></strong>
-    <strong><?= htmlspecialchars($comment->firstname)?></strong> le
-    <?= $comment->getCommentDateFr() ?> statut :
-    <?= $comment->label ?>
+<?php } ?>
+<?php foreach ($comments as $comment) { ?>
+<p><strong><?php echo htmlspecialchars($comment->lastname); ?></strong>
+    <strong><?php echo htmlspecialchars($comment->firstname); ?></strong> le
+    <?php echo $comment->getCommentDateFr(); ?> statut :
+    <?php echo $comment->label; ?>
 </p>
-<p><?= nl2br(htmlspecialchars($comment->comment)) ?>
+<p><?php echo nl2br(htmlspecialchars($comment->comment)); ?>
 </p>
 
-<?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $comment->user_id) : ?>
-<a href="index.php?action=comment.modify&id=<?= $comment->comment_id ?>">Modifier</a>
-<a href="index.php?action=comment.delete&id=<?= $comment->comment_id ?>">Supprimer</a>
-<?php endif ?>
-<?php endforeach ?>
+<?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $comment->user_id) { ?>
+<a href="index.php?action=comment.modify&id=<?php echo $comment->comment_id; ?>">Modifier</a>
+<a href="index.php?action=comment.delete&id=<?php echo $comment->comment_id; ?>">Supprimer</a>
+<?php } ?>
+<?php } ?>
 
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php');
+<?php require 'template.php';

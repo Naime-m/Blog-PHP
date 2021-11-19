@@ -3,7 +3,6 @@
 namespace App\Model\Repository;
 
 use App\Model\Entity\User;
-use Exception;
 
 class UserRepository extends Repository
 {
@@ -13,25 +12,32 @@ class UserRepository extends Repository
         $query = $db->prepare('SELECT id, email, password, lastname, firstname, userType_id
         FROM users WHERE email =  ?  AND password =  ?');
         $query->execute([$email, $password]);
-        $user = $query->fetchAll(\PDO::FETCH_CLASS, User::class);
+        $users = $query->fetchAll(\PDO::FETCH_CLASS, User::class);
 
-        return $user[0];
+        return $users[0] ?? false;
+    }
+
+    public function getOneByEmail($email)
+    {
+        $db = $this->dbConnect();
+        $query = $db->prepare('SELECT  id, email, password, lastname, firstname, userType_id
+         FROM users WHERE email= :email');
+        $query->bindParam(':email', $email);
+        $query->execute();
+        $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
+        $user = $query->fetch();
+        var_dump($user);
+
+        return $user;
     }
 
     public function insert($firstname, $lastname, $email, $password)
     {
         $db = $this->dbConnect();
-        $email = $_POST['email'];
-        $query = $db->prepare("SELECT email FROM users WHERE email= '.$email.'");
-        $query->execute([$email]);
-        if ($query->rowCount() > 0) {
-            throw new Exception('L\'email est déja pris, réessayez !');
-        } else {
-            $insert = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
+        $insert = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
               VALUES (?, ?, ?, ?, 2)');
-            $user = $insert->execute([$firstname, $lastname, $email, $password]);
+        $user = $insert->execute([$firstname, $lastname, $email, $password]);
 
-            return $user;
-        }
+        return $user;
     }
 }

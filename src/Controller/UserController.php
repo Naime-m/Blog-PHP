@@ -32,20 +32,18 @@ class UserController
 
     public function actionCreate()
     {
-        $userManager = new UserRepository();
         require '../src/View/user.form.php';
     }
 
     public function actionInsert($firstname, $lastname, $email, $password)
     {
         $userManager = new UserRepository();
-
-        $user = $userManager->insert($firstname, $lastname, $email, $password);
-
-        if (false === $user) {
-            throw new \Exception('Impossible de s\'inscrire ! Réessayez !');
+        $user = $userManager->getOneByEmail($email);
+        if (!empty($user)) {
+            throw new \Exception('L\'email est déja pris, réessayez !');
         } else {
-            require '../src/View/user.insert.php';
+            $user = $userManager->insert($firstname, $lastname, $email, $password);
         }
+        require '../src/View/user.insert.php';
     }
 }

@@ -8,10 +8,12 @@ class Post
     public $title;
     public $content;
     public $creation_date;
+    public $user_id;
 
     public function getPostDateFr()
     {
-        $date=new \DateTime($this->creation_date);
+        $date = new \DateTime($this->creation_date);
+
         return $date->format('d/m/Y à H:i');
     }
 }

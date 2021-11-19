@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?= $title ?></title>
+    <title><?php echo $title; ?></title>
     <link href="css/style.css" rel="stylesheet" />
 </head>
 
@@ -11,16 +11,17 @@
     <a href='?' class='accueil'>Bienvenue</a>
     <a href='?action=post.list' class='articles'>Les derniers articles !</a>
 
-    <?php if (isset($_SESSION['user'])) : ?>
-        <p>Bienvenue <?= $_SESSION['user']->lastname ?> <?= $_SESSION['user']->firstname ?> !
+    <?php if (isset($_SESSION['user'])) { ?>
+        <p>Bienvenue <?php echo $_SESSION['user']->lastname; ?> <?php echo $_SESSION['user']->firstname; ?> !
             <a href='?action=logout'>Se déconnecter</a>
-        <?php else : ?>
+        <?php } else { ?>
             <a href='?action=login.form'>Se connecter</a>
-        <?php endif ?>
+            <a href='?action=user.form'>S'inscrire</a>
+        <?php } ?>
 
 
 
-        <?= $content ?>
+        <?php echo $content; ?>
 </body>
 
 </html>

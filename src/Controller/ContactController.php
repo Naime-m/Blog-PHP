@@ -6,6 +6,6 @@ class ContactController
 {
     public function actionSubmit()
     {
-        require('../src/View/contact.submit.php');
+        require '../src/View/contact.submit.php';
     }
 }

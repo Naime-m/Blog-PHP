@@ -1,9 +1,9 @@
 <?php
 
 use App\Controller\CommentController;
+use App\Controller\ContactController;
 use App\Controller\HomeController;
 use App\Controller\PostController;
-use App\Controller\ContactController;
 use App\Controller\UserController;
 
 session_start();
@@ -32,14 +32,7 @@ function getPostContent()
         throw new Exception('La saisie du contenu est obligatoire');
     }
 }
-function getCommentAuthor()
-{
-    if (isset($_POST['author']) && !empty($_POST['author'])) {
-        return $_POST['author'];
-    } else {
-        throw new Exception('La saisie de l\'auteur est obligatoire');
-    }
-}
+
 function getCommentId()
 {
     if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -56,6 +49,22 @@ function getCommentContent()
         throw new Exception('La saisie du commentaire est obligatoire');
     }
 }
+function getUserFirstName()
+{
+    if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
+        return $_POST['firstname'];
+    } else {
+        throw new Exception('La saisie du prénom est obligatoire');
+    }
+}
+function getUserLastName()
+{
+    if (isset($_POST['lastname']) && !empty($_POST['lastname'])) {
+        return $_POST['lastname'];
+    } else {
+        throw new Exception('La saisie du nom est obligatoire');
+    }
+}
 function getUserEmail()
 {
     if (isset($_POST['email']) && !empty($_POST['email'])) {
@@ -64,6 +73,7 @@ function getUserEmail()
         throw new Exception('La saisie de l\'email est obligatoire');
     }
 }
+
 function getUserPassword()
 {
     if (isset($_POST['password']) && !empty($_POST['password'])) {
@@ -73,59 +83,74 @@ function getUserPassword()
     }
 }
 
+function getUserId()
+{
+    if (isset($_SESSION['user']->id) && !empty($_SESSION['user']->id)) {
+        return $_SESSION['user']->id;
+    } else {
+        throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
+    }
+}
+
 $action = $_GET['action'] ?? 'home';
-try {
-    if ($action == 'post.list') {
+//try {
+    if ('post.list' == $action) {
         $controller = new PostController();
         $controller->actionList();
-    } elseif ($action == 'post.show') {
+    } elseif ('post.show' == $action) {
         $controller = new PostController();
         $controller->actionShow(getPostId());
-    } elseif ($action == 'post.modify') {
+    } elseif ('post.modify' == $action) {
         $controller = new PostController();
         $controller->actionModify(getPostId());
-    } elseif ($action == 'post.update') {
+    } elseif ('post.update' == $action) {
         $controller = new PostController();
         $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
-    } elseif ($action == 'comment.insert') {
+    } elseif ('comment.insert' == $action) {
         $controller = new CommentController();
-        $controller->actionInsert(getPostId(), getCommentAuthor(), getCommentContent());
-    } elseif ($action == 'home') {
+        $controller->actionInsert(getPostId(), getCommentContent(), getUserId());
+    } elseif ('home' == $action) {
         $controller = new HomeController();
         $controller->actionHome();
-    } elseif ($action == 'post.delete') {
+    } elseif ('post.delete' == $action) {
         $controller = new PostController();
         $controller->actionDelete(getPostId());
-    } elseif ($action == 'post.create') {
+    } elseif ('post.create' == $action) {
         $controller = new PostController();
         $controller->actionCreate();
-    } elseif ($action == 'post.insert') {
+    } elseif ('post.insert' == $action) {
         $controller = new PostController();
-        $controller->actionInsert(getPostTitle(), getPostContent());
-    } elseif ($action == 'comment.modify') {
+        $controller->actionInsert(getPostTitle(), getPostContent(), getUserId());
+    } elseif ('comment.modify' == $action) {
         $controller = new CommentController();
         $controller->actionModify(getCommentId());
-    } elseif ($action == 'comment.update') {
+    } elseif ('comment.update' == $action) {
         $controller = new CommentController();
-        $controller->actionUpdate(getCommentId(), getCommentAuthor(), getCommentContent());
-    } elseif ($action == 'comment.delete') {
+        $controller->actionUpdate(getCommentId(), getCommentContent(), getUserId());
+    } elseif ('comment.delete' == $action) {
         $controller = new CommentController();
         $controller->actionDelete(getCommentId());
-    } elseif ($action == 'contact.submit') {
+    } elseif ('contact.submit' == $action) {
         $controller = new ContactController();
         $controller->actionSubmit();
-    } elseif ($action == 'login.form') {
+    } elseif ('login.form' == $action) {
         $controller = new UserController();
         $controller->actionLoginForm();
-    } elseif ($action == 'login.submit') {
+    } elseif ('login.submit' == $action) {
         $controller = new UserController();
         $controller->actionLoginSubmit(getUserEmail(), getUserPassword());
-    } elseif ($action == 'logout') {
+    } elseif ('logout' == $action) {
         $controller = new UserController();
         $controller->actionLogout();
+    } elseif ('user.form' == $action) {
+        $controller = new UserController();
+        $controller->actionCreate();
+    } elseif ('user.insert' == $action) {
+        $controller = new UserController();
+        $controller->actionInsert(getUserFirstName(), getUserLastName(), getUserEmail(), getUserPassword());
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }
-} catch (Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
-}
+//} catch (Exception $e) {
+  // echo 'Erreur : ' . $e->getMessage();
+// }

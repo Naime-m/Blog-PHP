@@ -3,24 +3,30 @@
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
+<?php if (isset($_SESSION['user'])) { ?>
 <em><a href="index.php?action=post.create">Ajouter</a></em>
-<?php foreach ($posts as $post) : ?>
-    <div class="news">
-        <h3>
-            <?= htmlspecialchars($post->title) ?>
-            <em>le <?= $post->getPostDateFr() ?></em>
-        </h3>
-        
-        <p>
-            <?= nl2br(htmlspecialchars($post->content)) ?>
-            <br />
-            <em><a href="index.php?action=post.show&amp;id=<?= $post->id ?>">Commentaires</a></em>
-            <em><a href="index.php?action=post.modify&amp;id=<?= $post->id ?>">Modifier</a></em>
-            <em><a href="index.php?action=post.delete&amp;id=<?= $post->id ?>">Supprimer</a></em>
+<?php } ?>
+<?php foreach ($posts as $post) { ?>
+<div class="news">
+    <h3>
+        <?php echo htmlspecialchars($post->title); ?>
+        <em>le <?php echo $post->getPostDateFr(); ?></em>
+        rédigé par <?php echo $post->lastname; ?> <?php echo $post->firstname; ?>
+    </h3>
 
-        </p>
-    </div>
-<?php endforeach ?>
+    <p>
+        <?php echo nl2br(htmlspecialchars($post->content)); ?>
+        <br />
+
+        <em><a href="index.php?action=post.show&id=<?php echo $post->id; ?>">Commentaires</a></em>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $post->user_id) { ?>
+        <em><a href="index.php?action=post.modify&id=<?php echo $post->id; ?>">Modifier</a></em>
+        <em><a href="index.php?action=post.delete&id=<?php echo $post->id; ?>">Supprimer</a></em>
+        <?php } ?>
+
+    </p>
+</div>
+<?php } ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require 'template.php';

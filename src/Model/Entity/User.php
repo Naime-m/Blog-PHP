@@ -9,4 +9,6 @@ class User
     public $password;
     public $lastname;
     public $firstname;
+    public $userTypeId;
+    public $userTypeLabel;
 }

@@ -20,16 +20,17 @@ class UserRepository extends Repository
     {
         $db = $this->dbConnect();
         // Vérifier pourquoi le mail était entré à la place du password ici
-       $email = $_POST['email'];
-        $query = $db->prepare("SELECT email FROM users WHERE email= '.$email.'");
-        $query->execute(array($email));
-        if (!isset($email)) {
-            throw new Exception('L\'email est déja pris, réessayez !');
-        } else {
-            $insert = $db->prepare('INSERT INTO users(firstname, lastname, password, email, userType_id)
+        $email = $_POST['email'];
+          $query = $db->prepare("SELECT email FROM users WHERE email= '.$email.'");
+          $query->execute(array($email));
+          if ($query->rowCount() > 0) {
+              throw new Exception('L\'email est déja pris, réessayez !');
+          } else {
+              $insert = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
               VALUES (?, ?, ?, ?, 2)');
-            $user =  $insert->execute(array($firstname, $lastname, $email, $password));
-            return $user;
-        }
+              $user =  $insert->execute(array($firstname, $lastname, $email, $password));
+              return $user;
+          } 
     }
-}
+
+    }

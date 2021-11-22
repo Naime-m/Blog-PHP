@@ -22,6 +22,18 @@ class CommentRepository extends Repository
         return $comments;
     }
 
+    public function getAllByStatus($status)
+    {
+        $db = $this->dbConnect();
+        $query = $db->prepare('SELECT id, post_id, comment,
+        comment_date, user_id, comment_status_id FROM comments 
+        WHERE comment_status_id = 2 ORDER BY comment_date DESC');
+        $query->execute([$status]);
+        $comments = $query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
+
+        return $comments;
+    }
+
     public function insert($postId, $comment, $user_id)
     {
         $db = $this->dbConnect();

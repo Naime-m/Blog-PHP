@@ -49,6 +49,9 @@ function getCommentContent()
         throw new Exception('La saisie du commentaire est obligatoire');
     }
 }
+function getCommentStatus()
+{
+}
 function getUserFirstName()
 {
     if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
@@ -148,6 +151,9 @@ $action = $_GET['action'] ?? 'home';
     } elseif ('user.insert' == $action) {
         $controller = new UserController();
         $controller->actionInsert(getUserFirstName(), getUserLastName(), getUserEmail(), getUserPassword());
+    } elseif ('comment.admin' == $action) {
+        $controller = new CommentController();
+        $controller->actionShow(getCommentStatus());
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }

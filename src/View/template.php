@@ -20,6 +20,7 @@
         <a href='?action=user.form'>S'inscrire</a>
         <?php } ?>
         <?php echo $content; ?>
+        <a href="index.php?action=comment.admin">Gestion des commentaires</a></p>
 </body>
 
 </html>

@@ -41,7 +41,6 @@
 <?php } ?>
 <?php } ?>
 
-<p><a href="index.php?action=comment.admin&status=<?php echo $comment->comment_status_id; ?>">Gestion des commentaires</a></p>
 <?php $content = ob_get_clean(); ?>
 
 <?php require 'template.php';

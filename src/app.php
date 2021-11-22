@@ -49,14 +49,6 @@ function getCommentContent()
         throw new Exception('La saisie du commentaire est obligatoire');
     }
 }
-function getCommentStatus()
-{
-    if (isset($_GET['comment_status_id']) && $_GET['comment_status_id'] > 0) {
-        return $_GET['comment_status_id'];
-    } else {
-        throw new Exception('Aucun statut de commentaire envoyé');
-    }
-}
 
 function getUserFirstName()
 {
@@ -99,6 +91,10 @@ function getUserId()
     } else {
         throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
     }
+}
+function getCommentStatus()
+{
+    
 }
 
 $action = $_GET['action'] ?? 'home';

@@ -51,7 +51,13 @@ function getCommentContent()
 }
 function getCommentStatus()
 {
+    if (isset($_GET['comment_status_id']) && $_GET['comment_status_id'] > 0) {
+        return $_GET['comment_status_id'];
+    } else {
+        throw new Exception('Aucun statut de commentaire envoyé');
+    }
 }
+
 function getUserFirstName()
 {
     if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {

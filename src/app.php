@@ -94,7 +94,11 @@ function getUserId()
 }
 function getCommentStatus()
 {
-    
+    if (isset($_SESSION['user']) && 1 == $_SESSION['user']->userType_id) {
+        return $_SESSION['user']->userType_id;
+    } else {
+        throw new Exception('L\'utilisateur n\'est pas un administrateur');
+    }
 }
 
 $action = $_GET['action'] ?? 'home';

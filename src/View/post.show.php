@@ -26,11 +26,13 @@
     </div>
 </form>
 <?php } ?>
+
 <?php foreach ($comments as $comment) { ?>
+    <?php if($comment->comment_status_id == 2 ) { ?>
 <p><strong><?php echo htmlspecialchars($comment->lastname); ?></strong>
     <strong><?php echo htmlspecialchars($comment->firstname); ?></strong> le
     <?php echo $comment->getCommentDateFr(); ?> statut :
-    <?php echo $comment->label; ?>
+    <?php echo $comment->comment_status_id; ?>
 </p>
 <p><?php echo nl2br(htmlspecialchars($comment->comment)); ?>
 </p>
@@ -38,6 +40,7 @@
 <?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $comment->user_id || 1 == $_SESSION['user']->userType_id) { ?>
 <a href="index.php?action=comment.modify&id=<?php echo $comment->comment_id; ?>">Modifier</a>
 <a href="index.php?action=comment.delete&id=<?php echo $comment->comment_id; ?>">Supprimer</a>
+<?php } ?>
 <?php } ?>
 <?php } ?>
 

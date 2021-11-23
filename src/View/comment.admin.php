@@ -8,6 +8,8 @@
     <?php echo $comment->getCommentDateFr(); ?>
     <p><?php echo nl2br(htmlspecialchars($comment->comment)); ?>
 </p>
+<a href="index.php?action=comment.valid&id=<?php echo $comment->comment_id; ?>">Valider</a>
+<a href="index.php?action=comment.delete&id=<?php echo $comment->comment_id; ?>">Supprimer</a>
 <?php } ?>
 
 

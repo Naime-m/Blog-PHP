@@ -75,4 +75,12 @@ class CommentRepository extends Repository
         $query = $db->prepare('DELETE FROM comments WHERE id = ?');
         $query->execute([$commentId]);
     }
+    public function updateStatus($commentId)
+    {
+        $db = $this->dbConnect();
+        $query = $db->prepare('UPDATE comments SET comment_status_id = 2
+        WHERE id = ?');
+        $query->execute([$commentId]);
+    }
+
 }

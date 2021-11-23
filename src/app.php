@@ -93,6 +93,7 @@ function getUserId()
     }
 }
 
+
 $action = $_GET['action'] ?? 'home';
 //try {
     if ('post.list' == $action) {
@@ -152,6 +153,9 @@ $action = $_GET['action'] ?? 'home';
     } elseif ('comment.admin' == $action) {
         $controller = new CommentController();
         $controller->actionShow();
+    } elseif ('comment.valid' == $action) {
+        $controller = new CommentController();
+        $controller->actionValid(getCommentId());
     } else {
         throw new Exception('L\'action demandée n\'existe pas');
     }

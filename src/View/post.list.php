@@ -19,7 +19,7 @@
         <br />
 
         <em><a href="index.php?action=post.show&id=<?php echo $post->id; ?>">Commentaires</a></em>
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $post->user_id) { ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']->userType_id == 1) { ?>
         <em><a href="index.php?action=post.modify&id=<?php echo $post->id; ?>">Modifier</a></em>
         <em><a href="index.php?action=post.delete&id=<?php echo $post->id; ?>">Supprimer</a></em>
         <?php } ?>

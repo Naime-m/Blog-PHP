@@ -37,7 +37,7 @@
 <p><?php echo nl2br(htmlspecialchars($comment->comment)); ?>
 </p>
 
-<?php if (isset($_SESSION['user']) && $_SESSION['user']->id == $comment->user_id || 1 == $_SESSION['user']->userType_id) { ?>
+<?php if (isset($_SESSION['user']) &&  1 == $_SESSION['user']->userType_id) { ?>
 <a href="index.php?action=comment.modify&id=<?php echo $comment->comment_id; ?>">Modifier</a>
 <a href="index.php?action=comment.delete&id=<?php echo $comment->comment_id; ?>">Supprimer</a>
 <?php } ?>

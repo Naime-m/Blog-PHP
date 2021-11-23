@@ -40,10 +40,10 @@ class CommentController
         require '../src/View/comment.delete.php';
     }
 
-    public function actionShow($status)
+    public function actionShow()
     {
         $commentManager = new CommentRepository();
-        $comment = $commentManager->getAllByStatus($status);
+        $comments = $commentManager->getAllByStatus();
         require '../src/View/comment.admin.php';
     }
 }

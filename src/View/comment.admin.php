@@ -10,6 +10,7 @@
 </p>
 <a href="index.php?action=comment.valid&id=<?php echo $comment->comment_id; ?>">Valider</a>
 <a href="index.php?action=comment.delete&id=<?php echo $comment->comment_id; ?>">Supprimer</a>
+<a href="index.php?action=comment.modify&id=<?php echo $comment->comment_id; ?>">Modifier</a>
 <?php } ?>
 
 

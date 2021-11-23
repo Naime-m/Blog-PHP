@@ -29,10 +29,9 @@
 
 <?php foreach ($comments as $comment) { ?>
     <?php if($comment->comment_status_id == 2 ) { ?>
-<p><strong><?php echo htmlspecialchars($comment->lastname); ?></strong>
+<p>Par <strong><?php echo htmlspecialchars($comment->lastname); ?></strong>
     <strong><?php echo htmlspecialchars($comment->firstname); ?></strong> le
-    <?php echo $comment->getCommentDateFr(); ?> statut :
-    <?php echo $comment->comment_status_id; ?>
+    <?php echo $comment->getCommentDateFr(); ?>
 </p>
 <p><?php echo nl2br(htmlspecialchars($comment->comment)); ?>
 </p>

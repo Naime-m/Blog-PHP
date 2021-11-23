@@ -20,7 +20,9 @@
         <a href='?action=user.form'>S'inscrire</a>
         <?php } ?>
         <?php echo $content; ?>
+        <?php if (isset($_SESSION['user']) AND 1 == $_SESSION['user']->userType_id) { ?>
         <a href="index.php?action=comment.admin">Gestion des commentaires</a></p>
+        <?php } ?>
 </body>
 
 </html>

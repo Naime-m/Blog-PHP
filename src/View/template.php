@@ -6,6 +6,7 @@
     <title><?php echo $title; ?>
     </title>
     <link href="css/style.css" rel="stylesheet" />
+    <link href="../public/img/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
 
 <body>

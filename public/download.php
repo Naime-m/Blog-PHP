@@ -24,7 +24,7 @@ flush();
 readfile($url,true);
 
 
-die();
+exit();
 }
 else{
 echo "Le chemin du fichier n'existe pas.";

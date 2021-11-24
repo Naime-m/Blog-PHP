@@ -6,8 +6,8 @@
 <img src ="/img/logop5.png" alt ="logo">
 <ul>
 <li>Naime Medjek, développeur pour toutes vos applications !</li>
-<li>CV au format PDF</li>
-<li>Mes réseaux sociaux où l’on peut me suivre</li></ul>
+<li><a href="download.php?path=CV.pdf">Mon CV au format PDF</a></li>
+<li>Les réseaux sociaux où l’on peut me suivre : <a href ="https://github.com/Naime-m">GitHub</a></li></ul>
 
 <h2>Me contacter !</h2>
 <form action="index.php?action=contact.submit" method="post">

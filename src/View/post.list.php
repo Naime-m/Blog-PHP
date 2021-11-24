@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
-<?php if (isset($_SESSION['user']) AND $_SESSION['user']->userType_id == 1) { ?>
+<?php if (isset($_SESSION['user']) && $_SESSION['user']->userType_id == 1) { ?>
 <em><a href="index.php?action=post.create">Ajouter</a></em>
 <?php } ?>
 <?php foreach ($posts as $post) { ?>

@@ -26,18 +26,18 @@ class UserRepository extends Repository
         $query->execute();
         $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
         $user = $query->fetch();
+
         return $user;
     }
 
     public function insert($firstname, $lastname, $email, $password)
     {
-        $pass = $_POST['password'];
-        $hashedpass = password_hash($pass, PASSWORD_DEFAULT);
-        $db = $this->dbConnect();
-        $insert = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
-              VALUES (?, ?, ?, '.$hashedpass.', 2)');
-        $user = $insert->execute([$firstname, $lastname, $email, $password]);
+        $hashpass = password_hash($password, PASSWORD_DEFAULT);
+           $db = $this->dbConnect();
+           $insert = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
+                   VALUES (?, ?, ?, '.$hashpass.', 2)');
+           $user = $insert->execute([$firstname, $lastname, $email, $password]);
 
-        return $user;
+           return $user;
     }
 }

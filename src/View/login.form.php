@@ -19,21 +19,6 @@
         <input type="submit" />
     </div>
 </form>
-<?php
-if (isset($_POST['password'])){
-    $pass = $_POST['password'];
-    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
-    if (password_verify($pass, $pass_hash))
-    {
-      echo "Mot de passe correct";
-    }
-    else
-    {
-      echo "Mot de passe incorrect";
-    }
-}
-
-?>
 
 <?php $content = ob_get_clean(); ?>
 

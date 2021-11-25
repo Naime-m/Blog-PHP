@@ -25,12 +25,6 @@
         <input type="submit" />
     </div>
 </form>
-<?php
-if (isset($_POST['password'])) {
-    $pass = $_POST['password'];
-    $hashedpass = password_hash($pass, PASSWORD_DEFAULT);
-}
-?>
 
 <?php $content = ob_get_clean(); ?>
 

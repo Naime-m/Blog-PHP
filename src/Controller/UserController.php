@@ -11,20 +11,18 @@ class UserController
         require '../src/View/login.form.php';
     }
 
-    public function actionLoginSubmit($email, $password)
+    public function actionLoginSubmit($email)
     {
         $userManager = new UserRepository();
-        $user = $userManager->getOneByEmailandPassword($email, $password);
-            $hashpass = password_hash($password, PASSWORD_DEFAULT);
-            $passcorrect = password_verify($password, $hashpass);
-            if ($passcorrect == true) {
-                require '../src/View/login.submit.connected.php';
-                $_SESSION['user'] = $user;
-            } elseif(password_verify($password, $hashpass) == false) {
-                header('Location: index.php?action=login.form&login=invalid');
-                }
-            }
-        
+        $user = $userManager->getOneByEmailandPassword($email);
+        if (empty($user)) {
+            header('Location: index.php?action=login.form&login=invalid');
+        } else {
+            $_SESSION['user'] = $user;
+            require '../src/View/login.submit.connected.php';
+        }
+    }
+
 
     public function actionLogout()
     {

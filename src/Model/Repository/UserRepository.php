@@ -11,11 +11,11 @@ class UserRepository extends Repository
         $db = $this->dbConnect();
         $query = $db->prepare('SELECT id, email, password, lastname, firstname, userType_id
         FROM users WHERE email =  ?  AND password =  ?');
-        $hashpass = password_hash($password, PASSWORD_DEFAULT);
-        if (password_verify($password, $hashpass)) {
+       $hashpass = password_hash($password, PASSWORD_DEFAULT);
+       $passcorrect = password_verify($password, $hashpass);
+       if ($passcorrect == true) {
             $query->execute([$email, $password]);
             $users = $query->fetchAll(\PDO::FETCH_CLASS, User::class);
-
             return $users[0] ?? false;
         }
     }

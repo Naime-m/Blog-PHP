@@ -35,9 +35,8 @@ class UserRepository extends Repository
         $hashpass = password_hash($password, PASSWORD_DEFAULT);
            $db = $this->dbConnect();
            $insert = $db->prepare('INSERT INTO users(firstname, lastname, email, password, userType_id)
-                   VALUES (?, ?, ?, '.$hashpass.', 2)');
-           $user = $insert->execute([$firstname, $lastname, $email, $password]);
-
+                   VALUES (?, ?, ?, ?, 2)');
+           $user = $insert->execute([$firstname, $lastname, $email, $hashpass]);
            return $user;
     }
 }

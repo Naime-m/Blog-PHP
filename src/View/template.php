@@ -22,8 +22,9 @@
         <?php } ?>
         <?php echo $content; ?>
         <?php if (isset($_SESSION['user']) && 1 == $_SESSION['user']->userType_id) { ?>
-        <a href="index.php?action=comment.admin">Gestion des commentaires</a></p>
-        <?php } ?>
+        <a href="index.php?action=comment.admin">Gestion des commentaires</a>
+    </p>
+    <?php } ?>
 </body>
 
 </html>

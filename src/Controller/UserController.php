@@ -15,6 +15,7 @@ class UserController
     {
         $userManager = new UserRepository();
         $user = $userManager->getOneByEmailandPassword($email, $password);
+
         if (empty($user)) {
             header('Location: index.php?action=login.form&login=invalid');
         } else {
@@ -22,6 +23,18 @@ class UserController
             require '../src/View/login.submit.connected.php';
         }
     }
+
+    /*
+        $hashpass = password_hash($password, PASSWORD_DEFAULT);
+        if (password_verify($password, $hashpass)) {
+            $_SESSION['user'] = $user;
+            require '../src/View/login.submit.connected.php';
+        } else {
+            if (empty($user)) {
+                header('Location: index.php?action=login.form&login=invalid');
+            }
+        }
+    } */
 
     public function actionLogout()
     {

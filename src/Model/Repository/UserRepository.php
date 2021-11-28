@@ -15,11 +15,24 @@ class UserRepository extends Repository
         $query->execute([$email]);
         $users = $query->fetchAll(\PDO::FETCH_CLASS, User::class);
         $result = password_verify($_POST['password'], $users[0]->password);
-        if ($result == true) {
+        if (true == $result) {
             return $users[0] ?? false;
+        } else {
+            throw new Exception('Identifiants incorrects !');
         }
     }
 
+    public function getAll()
+    {
+        $db = $this->dbConnect();
+        $query = $db->prepare('SELECT  id, email, password, lastname, firstname, userType_id
+         FROM users');
+        $query->execute();
+        $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
+        $users = $query->fetchAll();
+
+        return $users;
+    }
 
     public function getOneByEmail($email)
     {

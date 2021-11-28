@@ -43,14 +43,14 @@ class CommentController
     public function actionShow()
     {
         $commentManager = new CommentRepository();
-        $comments = $commentManager->getAllByStatus();
+        $comments = $commentManager->getAllByStatus(1);
         require '../src/View/comment.admin.php';
     }
 
-    public function actionValid($commentId) {
+    public function actionValid($commentId)
+    {
         $commentManager = new CommentRepository();
         $comment = $commentManager->updateStatus($commentId);
         header('Location: index.php?action=comment.admin');
     }
-    }
-
+}

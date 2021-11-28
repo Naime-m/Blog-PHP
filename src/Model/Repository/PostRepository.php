@@ -31,8 +31,11 @@ class PostRepository extends Repository
 
     public function get($postId)
     {
-        $db = $this->dbConnect();
-        $query = $db->prepare('SELECT posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
+        $db =
+
+        $this->dbConnect();
+        $query = $db->prepare('SELECT
+         posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
         users.lastname, users.firstname
         FROM posts JOIN users ON posts.user_id = users.id
         WHERE posts.id = ?');
@@ -47,13 +50,13 @@ class PostRepository extends Repository
         return $posts[0];
     }
 
-    public function update($postId, $title, $content)
+    public function update($postId, $title, $content, $userId)
     {
         $db = $this->dbConnect();
-        $query = $db->prepare('UPDATE posts
-        SET title=?, content=?, creation_date = NOW()
-        WHERE id = ?');
-        $query->execute([$title, $content, $postId]);
+        $query = $db->prepare('UPDATE posts, users
+        SET title=?, content=?, posts.user_id = users.id, creation_date = NOW()
+        WHERE posts.id = ?');
+        $query->execute([$title, $content, $postId, $userId]);
     }
 
     public function delete($postId)

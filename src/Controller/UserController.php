@@ -23,7 +23,6 @@ class UserController
         }
     }
 
-
     public function actionLogout()
     {
         session_unset();

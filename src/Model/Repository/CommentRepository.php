@@ -22,7 +22,7 @@ class CommentRepository extends Repository
         return $comments;
     }
 
-    public function getAllByStatus()
+    public function getAllByStatus($status)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('SELECT comments.id AS comment_id, comments.post_id, comments.comment,
@@ -31,7 +31,8 @@ class CommentRepository extends Repository
         FROM comments 
         JOIN users ON comments.user_id = users.id
         JOIN comment_status ON comments.comment_status_id = comment_status.id
-        WHERE comment_status_id = 1 ORDER BY comment_date DESC');
+        WHERE comment_status_id = :status ORDER BY comment_date DESC');
+        $query->bindParam(':status', $status);
         $query->execute();
         $comments = $query->fetchAll(\PDO::FETCH_CLASS, Comment::class);
         return $comments;

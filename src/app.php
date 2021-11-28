@@ -83,6 +83,14 @@ function getUserPassword()
         throw new Exception('La saisie du mot de passe est obligatoire');
     }
 }
+function getUser_Id()
+{
+    if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
+        return $_POST['user_id'];
+    } else {
+        throw new Exception('Le choix de l\'auteur est obligatoire');
+    }
+}
 
 function getUserId()
 {
@@ -92,7 +100,6 @@ function getUserId()
         throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
     }
 }
-
 
 $action = $_GET['action'] ?? 'home';
 //try {
@@ -107,7 +114,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionModify(getPostId());
     } elseif ('post.update' == $action) {
         $controller = new PostController();
-        $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
+        $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent(), getUser_Id());
     } elseif ('comment.insert' == $action) {
         $controller = new CommentController();
         $controller->actionInsert(getPostId(), getCommentContent(), getUserId());

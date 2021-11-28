@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Repository\CommentRepository;
 use App\Model\Repository\PostRepository;
+use App\Model\Repository\UserRepository;
 
 class PostController
 {
@@ -18,14 +19,17 @@ class PostController
     public function actionModify($postId)
     {
         $postManager = new PostRepository();
+        $userManager = new UserRepository();
         $post = $postManager->get($postId);
+        $users = $userManager->getAll();
+
         require '../src/View/post.modify.php';
     }
 
-    public function actionUpdate($postId, $title, $content)
+    public function actionUpdate($postId, $title, $content, $userId)
     {
         $postManager = new PostRepository();
-        $post = $postManager->update($postId, $title, $content);
+        $post = $postManager->update($postId, $title, $content, $userId);
         header('location: ?action=post.show&id='.$postId);
     }
 

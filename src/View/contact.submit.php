@@ -6,7 +6,7 @@
 
      $to      = 'naimemedjek@gmail.com';
      $subject = 'Blog PHP';
-     $message = 'De'. $_POST['nom'] . $_POST['prenom'] . ':'. $_POST['message'];
+     $message = 'Bonjour'; //'De'. $_POST['nom'] . $_POST['prenom'] . ':'. $_POST['message'];
 
      mail($to, $subject, $message);
  ?>

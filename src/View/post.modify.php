@@ -13,7 +13,7 @@
         <option value="">--Choisissez une option--</option>
 
         <?php foreach ($users as $user) { ?>
-        <option value="user"><?php echo $user->firstname; ?> <?php echo $user->id; ?>
+        <option value="user"><?php echo $user->lastname ?>  <?php echo $user->firstname ?>
         </option>
         <?php } ?>
 

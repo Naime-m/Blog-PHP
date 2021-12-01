@@ -7,13 +7,13 @@
     <input type="text" name="title" value="<?php echo $post->title; ?>"><br>
     <textarea name="content" cols="30" rows="10"><?php echo $post->content; ?></textarea><br>
 
-    <label for="newauthor">Choisir un nouvel auteur:</label>
+    <label for="author">Choisir un nouvel auteur:</label>
 
     <select name="user_id" id="user_id">
         <option value="">--Choisissez une option--</option>
 
         <?php foreach ($users as $user) { ?>
-        <option value="user"><?php echo $user->lastname ?>  <?php echo $user->firstname ?>
+        <option value=<?php echo $user->id?> name="user"><?php echo $user->lastname ?> <?php echo $user->firstname ?>
         </option>
         <?php } ?>
 

@@ -114,7 +114,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionModify(getPostId());
     } elseif ('post.update' == $action) {
         $controller = new PostController();
-        $controller->actionUpdate(getPostTitle(), getPostContent(), getPostId());
+        $controller->actionUpdate(getPostTitle(), getPostContent(),getUser_Id(), getPostId());
     } elseif ('comment.insert' == $action) {
         $controller = new CommentController();
         $controller->actionInsert(getPostId(), getCommentContent(), getUserId());

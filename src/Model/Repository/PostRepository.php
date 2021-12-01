@@ -50,14 +50,14 @@ class PostRepository extends Repository
         return $posts[0];
     }
 
-    public function update($title, $content, $postId, $userId)
+    public function update($title, $content, $userId, $postId)
     {
         $db = $this->dbConnect();
         $query = $db->prepare('UPDATE posts, users
         SET title=?, content=?, posts.user_id = users.id, creation_date = NOW()
         WHERE posts.id = ?
         ');
-        $query->execute([$title, $content, $postId, $userId]);
+        $query->execute([$title, $content, $userId, $postId]);
     }
 
     public function delete($postId)

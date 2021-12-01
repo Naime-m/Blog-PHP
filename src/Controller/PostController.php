@@ -26,10 +26,10 @@ class PostController
         require '../src/View/post.modify.php';
     }
 
-    public function actionUpdate($postId, $title, $content, $userId)
+    public function actionUpdate($title, $content, $userId, $postId)
     {
         $postManager = new PostRepository();
-        $post = $postManager->update($postId, $title, $content, $userId);
+        $post = $postManager->update($title, $content, $userId, $postId);
         header('location: ?action=post.show&id='.$postId);
     }
 

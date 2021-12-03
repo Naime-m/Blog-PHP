@@ -1,3 +1,4 @@
 public/test/
 vendor/
 .etude/*.pdf
+settings.php

@@ -83,7 +83,7 @@ function getUserPassword()
         throw new Exception('La saisie du mot de passe est obligatoire');
     }
 }
-function getUser_Id()
+function getPostUserId()
 {
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
         return $_POST['user_id'];
@@ -97,12 +97,12 @@ function getUserId()
     if (isset($_SESSION['user']->id) && !empty($_SESSION['user']->id)) {
         return $_SESSION['user']->id;
     } else {
-        throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
+        throw new Exception('Vous devez être connecté !');
     }
 }
 
 $action = $_GET['action'] ?? 'home';
-//try {
+try {
     if ('post.list' == $action) {
         $controller = new PostController();
         $controller->actionList();
@@ -114,7 +114,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionModify(getPostId());
     } elseif ('post.update' == $action) {
         $controller = new PostController();
-        $controller->actionUpdate(getPostTitle(), getPostContent(),getUser_Id(), getPostId());
+        $controller->actionUpdate(getPostTitle(), getPostContent(), getPostUserId(), getPostId());
     } elseif ('comment.insert' == $action) {
         $controller = new CommentController();
         $controller->actionInsert(getPostId(), getCommentContent(), getUserId());
@@ -163,9 +163,9 @@ $action = $_GET['action'] ?? 'home';
     } elseif ('comment.valid' == $action) {
         $controller = new CommentController();
         $controller->actionValid(getCommentId());
-    } else {
-        throw new Exception('L\'action demandée n\'existe pas');
     }
-//} catch (Exception $e) {
-  // echo 'Erreur : ' . $e->getMessage();
-// }
+
+} catch (Exception $e) {
+    require '../src/View/template.error.php';
+    echo $e->getMessage();
+}

@@ -4,8 +4,8 @@
 <h1>Modifier un post</h1>
 
 <form action="?action=post.update&id=<?php echo $post->id; ?>" method='post'>
-    <input type="text" name="title" value="<?php echo $post->title; ?>"><br>
-    <textarea name="content" cols="30" rows="10"><?php echo $post->content; ?></textarea><br>
+    <input type="text" name="title" value="<?php echo htmlspecialchars ($post->title); ?>"><br>
+    <textarea name="content" cols="30" rows="10"><?php echo htmlspecialchars($post->content); ?></textarea><br>
 
     <label for="author">Choisir un nouvel auteur:</label>
 
@@ -13,7 +13,7 @@
         <option value="">--Choisissez une option--</option>
 
         <?php foreach ($users as $user) { ?>
-        <option value=<?php echo $user->id?> name="user"><?php echo $user->lastname ?> <?php echo $user->firstname ?>
+        <option value=<?php echo $user->id?> name="user"><?php echo htmlspecialchars($user->lastname) ?> <?php echo htmlspecialchars($user->firstname) ?>
         </option>
         <?php } ?>
 

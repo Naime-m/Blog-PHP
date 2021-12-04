@@ -14,7 +14,7 @@
     <a href='?action=post.list' class='articles'>Les derniers articles !</a>
 
     <?php if (isset($_SESSION['user'])) { ?>
-    <p>Bienvenue <?php echo $_SESSION['user']->lastname; ?> <?php echo $_SESSION['user']->firstname; ?> !
+    <p>Bienvenue <?php echo htmlspecialchars($_SESSION['user']->lastname); ?> <?php echo htmlspecialchars($_SESSION['user']->firstname); ?> !
         <a href='?action=logout'>Se déconnecter</a>
         <?php } else { ?>
         <a href='?action=login.form'>Se connecter</a>

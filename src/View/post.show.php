@@ -31,7 +31,7 @@
     <?php if($comment->comment_status_id == 2 ) { ?>
 <p>Par <strong><?php echo htmlspecialchars($comment->lastname); ?></strong>
     <strong><?php echo htmlspecialchars($comment->firstname); ?></strong> le
-    <?php echo $comment->getCommentDateFr(); ?>
+    <?php echo htmlspecialchars ($comment->getCommentDateFr()); ?>
 </p>
 <p><?php echo nl2br(htmlspecialchars($comment->comment)); ?>
 </p>

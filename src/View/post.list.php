@@ -10,8 +10,8 @@
 <div class="news">
     <h3>
         <?php echo htmlspecialchars($post->title); ?>
-        <em>le <?php echo $post->getPostDateFr(); ?></em>
-        rédigé par <?php echo $post->lastname; ?> <?php echo $post->firstname; ?>
+        <em>le <?php echo htmlspecialchars($post->getPostDateFr()); ?></em>
+        rédigé par <?php echo htmlspecialchars($post->lastname); ?> <?php echo htmlspecialchars($post->firstname); ?>
     </h3>
 
     <p>

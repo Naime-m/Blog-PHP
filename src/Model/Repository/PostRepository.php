@@ -54,7 +54,6 @@ class PostRepository extends Repository
     {
         $db = $this->dbConnect();
         $query = $db->prepare('UPDATE posts
-        JOIN users ON posts.user_id = users.id
         SET posts.title=?, posts.content=?, posts.user_id = ?, creation_date = NOW()
         WHERE posts.id = ?');
         $query->execute([$title, $content, $user_id, $postId]);

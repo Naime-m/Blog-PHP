@@ -2,17 +2,14 @@
 
 <?php ob_start(); ?>
 
-<?php
 
-     $to      = 'naimemedjek@gmail.com';
-     $subject = 'Blog PHP';
-     $message = 'Bonjour'; //'De'. $_POST['nom'] . $_POST['prenom'] . ':'. $_POST['message'];
+<?php if ($result == true) { ?>
+<h1>Votre message a bien été envoyé ! </h1>
+<?php } ?>
 
-     mail($to, $subject, $message);
- ?>
-
-<h1>Votre message a bien été envoyé !</h1>
-
+<?php if ($result == false) { ?>
+<h1>Erreur : réessayez ! </h1>
+<?php } ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require 'template.php'; ?>
+<?php require 'template.php';

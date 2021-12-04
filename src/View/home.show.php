@@ -21,7 +21,7 @@
     </div>
     <div>
         <label for="email">Email</label><br />
-        <input type="email" id="prenom" name="prenom">
+        <input type="email" id="email" name="email">
     </div>
     <div>
         <label for="message">Message</label><br />

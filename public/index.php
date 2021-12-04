@@ -1,5 +1,5 @@
 <?php
 
 require '../vendor/autoload.php';
-require '../settings.php';
+require '../vendor/settings.php';
 require '../src/app.php';

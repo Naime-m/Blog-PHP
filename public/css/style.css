@@ -1,27 +1,45 @@
-h1, h3
-{
-    text-align:center;
-}
-h3
-{
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
-}
-.news p
-{
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.news
-{
-    width:70%;
-    margin:auto;
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-a
-{
-    text-decoration: none;
+h1 {
+ text-align: center;
+ text-decoration: underline;
+}
+h2 {
+    text-align: center;
+}
+.news {
+    background-color: lightblue;
+
+}
+.title{
+    text-decoration: underline;
+    text-align: center;
+}
+p {
+    padding-left: 1em;
+}
+a{
+    padding-left: 1em;
     color: blue;
+}
+.comment {
+    display: flex;
+    justify-content: flex-start;
+}
+.presentation {
+    text-align: center;
+}
+form {
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;
+    padding-bottom: 2em;
+    text-align: center;
+}
+
+img{
+margin-left: 30%;    
 }

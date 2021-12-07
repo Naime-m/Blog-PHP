@@ -11,10 +11,10 @@ class UserController
         require '../src/View/login.form.php';
     }
 
-    public function actionLoginSubmit($email, $password)
+    public function actionLoginSubmit($email)
     {
         $userManager = new UserRepository();
-        $user = $userManager->getOneByEmailandPassword($email, $password);
+        $user = $userManager->getOneByEmailandPassword($email);
         if (empty($user)) {
             header('Location: index.php?action=login.form&login=invalid');
         } else {

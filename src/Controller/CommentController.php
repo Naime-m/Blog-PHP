@@ -39,4 +39,18 @@ class CommentController
         $comment = $commentManager->delete($commentId);
         require '../src/View/comment.delete.php';
     }
+
+    public function actionShow()
+    {
+        $commentManager = new CommentRepository();
+        $comments = $commentManager->getAllByStatus(1);
+        require '../src/View/comment.admin.php';
+    }
+
+    public function actionValid($commentId)
+    {
+        $commentManager = new CommentRepository();
+        $comment = $commentManager->updateStatus($commentId);
+        header('Location: index.php?action=comment.admin');
+    }
 }

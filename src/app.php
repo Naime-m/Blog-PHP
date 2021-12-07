@@ -49,6 +49,7 @@ function getCommentContent()
         throw new Exception('La saisie du commentaire est obligatoire');
     }
 }
+
 function getUserFirstName()
 {
     if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
@@ -82,18 +83,26 @@ function getUserPassword()
         throw new Exception('La saisie du mot de passe est obligatoire');
     }
 }
+function getPostUserId()
+{
+    if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
+        return $_POST['user_id'];
+    } else {
+        throw new Exception('Le choix de l\'auteur est obligatoire');
+    }
+}
 
 function getUserId()
 {
     if (isset($_SESSION['user']->id) && !empty($_SESSION['user']->id)) {
         return $_SESSION['user']->id;
     } else {
-        throw new Exception('L\'utilisateur n\'a pas d\'id spécifié');
+        throw new Exception('Vous devez être connecté !');
     }
 }
 
 $action = $_GET['action'] ?? 'home';
-//try {
+try {
     if ('post.list' == $action) {
         $controller = new PostController();
         $controller->actionList();
@@ -105,7 +114,7 @@ $action = $_GET['action'] ?? 'home';
         $controller->actionModify(getPostId());
     } elseif ('post.update' == $action) {
         $controller = new PostController();
-        $controller->actionUpdate(getPostId(), getPostTitle(), getPostContent());
+        $controller->actionUpdate(getPostTitle(), getPostContent(), getPostUserId(), getPostId());
     } elseif ('comment.insert' == $action) {
         $controller = new CommentController();
         $controller->actionInsert(getPostId(), getCommentContent(), getUserId());
@@ -148,9 +157,15 @@ $action = $_GET['action'] ?? 'home';
     } elseif ('user.insert' == $action) {
         $controller = new UserController();
         $controller->actionInsert(getUserFirstName(), getUserLastName(), getUserEmail(), getUserPassword());
-    } else {
-        throw new Exception('L\'action demandée n\'existe pas');
+    } elseif ('comment.admin' == $action) {
+        $controller = new CommentController();
+        $controller->actionShow();
+    } elseif ('comment.valid' == $action) {
+        $controller = new CommentController();
+        $controller->actionValid(getCommentId());
     }
-//} catch (Exception $e) {
-  // echo 'Erreur : ' . $e->getMessage();
-// }
+
+} catch (Exception $e) {
+    require '../src/View/template.error.php';
+    echo $e->getMessage();
+}

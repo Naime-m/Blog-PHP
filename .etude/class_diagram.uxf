@@ -4,24 +4,26 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>100</x>
-      <y>80</y>
+      <x>180</x>
+      <y>110</y>
       <w>210</w>
-      <h>100</h>
+      <h>130</h>
     </coordinates>
-    <panel_attributes>Administrateur
+    <panel_attributes>User
 --
-Login : String
+Id : Integer
+Email : String
 Password : String 
+Last name : String
 First name : String
-Last name : String</panel_attributes>
+userType_id : Integer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>90</y>
+      <x>600</x>
+      <y>140</y>
       <w>210</w>
       <h>120</h>
     </coordinates>
@@ -31,32 +33,33 @@ Id : Integer
 Title : String
 Content :String
 Date : Date
-Author : String</panel_attributes>
+user_id : Integer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
+      <x>600</x>
       <y>290</y>
       <w>210</w>
-      <h>120</h>
+      <h>150</h>
     </coordinates>
-    <panel_attributes>Commentaire
+    <panel_attributes>Comment
 --
 Id : Integer
 Post_id : Integer
 Content :String
-Date : Date
-Author : String
+Comment_status_id: String 
+comment_date : Date
+user_id : Integer
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>130</y>
+      <x>380</x>
+      <y>180</y>
       <w>240</w>
       <h>50</h>
     </coordinates>
@@ -69,45 +72,75 @@ Manage &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>170</y>
-      <w>250</w>
-      <h>150</h>
+      <x>380</x>
+      <y>210</y>
+      <w>240</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..1
 m2=0..*
 Manage &gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;230.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>320</y>
-      <w>250</w>
-      <h>50</h>
+      <x>280</x>
+      <y>230</y>
+      <w>60</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=-
-m1=0..*
+m1=1.1
 m2=0..*
-Write &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
+Is &gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>100</x>
-      <y>290</y>
+      <x>190</x>
+      <y>320</y>
       <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>UserType
+--
+Id : Integer
+Label: String
+--
+Exemple: Administrateur, User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>510</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Comment_status
+--
+Id : Integer
+Label: String
+--
+Exemple: Validé, à valider</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>430</y>
+      <w>60</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>Registered User
---
-Login : String
-Password : String 
-First name : String
-Last name : String</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=-
+m1=1.1
+m2=0..*
+Is &gt;</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

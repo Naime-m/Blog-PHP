@@ -1,6 +1,6 @@
 # P5_blog_php
 
-
-composer install
-chargement de la base de données
-modification du settings.php
+Pour installer le projet il faudra :
+- Installer composer avec la commande : composer install
+- Charger la base de données
+- Modifier settings.php (ici settings.example.php qu'il faudra renommer) avec les bonnes informations

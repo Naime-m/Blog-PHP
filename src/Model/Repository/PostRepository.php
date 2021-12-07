@@ -12,7 +12,7 @@ class PostRepository extends Repository
         $query = $db->query('SELECT posts.id, posts.title, posts.content, posts.creation_date, posts.user_id,
         users.lastname, users.firstname
         FROM posts JOIN users ON posts.user_id = users.id
-        ORDER BY creation_date DESC LIMIT 0, 5');
+        ORDER BY creation_date DESC');
 
         $posts = $query->fetchAll(\PDO::FETCH_CLASS, Post::class);
 

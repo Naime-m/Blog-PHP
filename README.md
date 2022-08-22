@@ -1,4 +1,6 @@
-# P5_blog_php
+# Blog PHP
+
+Cinquième projet dans le cadre de ma formation de développeur PHP Symfony chez OpenClassrooms
 
 Pour installer le projet il faudra :
 - Installer composer avec la commande : composer install
